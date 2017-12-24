@@ -1,0 +1,90 @@
+<% include ../partials/header %>
+
+
+<!--<div class="profile-head">-->
+<!--	<div class="title">-->
+<!--		<h3>A little more info</h3>-->
+<!--	</div>-->
+<!--</div>-->
+
+<form action="/friends/new/more_info/<%= tmpFriend._id %>" class="login-form" method="POST">
+    <div class="profile-head">
+    	<div class="title">
+    		<h3>A little more info</h3>
+    	</div>
+    	<span class="required-field">*Required Field</span>
+    </div>
+    
+    <div>
+    	<span class="required">*</span>
+		<textarea name="description" placeholder="Please give a good description of your friend." required></textarea>
+	</div>	
+
+	<% if (!tmpFriend.shelter) { %>
+	<div class="profile-head">
+    	<div class="title">
+    		<h4>Shelter/Contact</h4>
+    	</div>
+    </div>
+    
+	<div class="trans-input">
+		<input type="text" name="shelter[name]" class="ipt-ani" id="shelter-name" value="<% if(tmpFriend.shelter && tmpFriend.shelter.name){%><%=tmpFriend.shelter.name%><%}%>">
+		<label for="shelter-name" class="lbl-ani">Name</label>
+	</div>
+	
+	<div class="trans-input">
+		<span class="required">*</span>
+		<input type="email" name="shelter[email]" class="ipt-ani" id="shelter-email" required value="<% if(tmpFriend.shelter && tmpFriend.shelter.email){%><%=tmpFriend.shelter.email%><%}%>">
+		<label for="shelter-email" class="lbl-ani">Email</label>
+		<div id="use-email">
+			<input type="checkbox" name="useEmail" id="use-email-input">
+			<label for="use-email-input">Use your login email address</label>
+		</div>
+	</div>
+	
+	<div class="trans-input">
+		<input type="text" name="shelter[address1]" class="ipt-ani" id="shelter-address1" value="<% if(tmpFriend.shelter && tmpFriend.shelter.address1){%><%=tmpFriend.shelter.address1%><%}%>">
+		<label for="shelter-address1" class="lbl-ani">Address 1</label>
+	</div>
+	
+	<div class="trans-input">
+		<input type="text" name="shelter[address2]" class="ipt-ani" id="shelter-address2" value="<% if(tmpFriend.shelter && tmpFriend.shelter.address2){%><%=tmpFriend.shelter.address2%><%}%>">
+		<label for="shelter-address2" class="lbl-ani">Address 2</label>
+	</div>
+	
+	<div class="trans-input">
+		<input type="text" name="shelter[city]" class="ipt-ani" id="shelter-city" value="<% if(tmpFriend.shelter && tmpFriend.shelter.city){%><%=tmpFriend.shelter.city%><%}%>">
+		<label for="shelter-city" class="lbl-ani">City</label>
+	</div>
+	
+	<div class="trans-input">
+		<input type="text" name="shelter[state]" class="ipt-ani" id="shelter-state" value="<% if(tmpFriend.shelter && tmpFriend.shelter.state){%><%=tmpFriend.shelter.state%><%}%>">
+		<label for="shelter-state" class="lbl-ani">State</label>
+	</div>
+	
+	<div class="trans-input">
+		<input type="text" name="shelter[zip]" class="ipt-ani" id="shelter-zip" value="<% if(tmpFriend.shelter && tmpFriend.shelter.zip){%><%=tmpFriend.shelter.zip%><%}%>">
+		<label for="shelter-zip" class="lbl-ani">Zip</label>
+	</div>
+	<% } %>
+	
+	<input type="submit" value="Continue">
+	
+</form>
+
+
+<script>
+	$("#use-email").click(function() {
+		if(document.getElementById("use-email-input").checked === true) {
+			document.getElementById("shelter-email").value = "<%= currentUser.username %>";
+			toggleTextInputLabel();
+		} else {
+			document.getElementById("shelter-email").value = null;
+			toggleTextInputLabel();
+		}
+	})
+</script>
+
+
+
+<% include ../partials/footer %>

@@ -1,0 +1,31 @@
+<% include ./partials/header %>
+
+
+<% if(subject === "report") { %>
+	<div class="profile-head">
+		<div class="title">
+			<h2>Report <%= recipient.firstName %></h2>
+		</div>
+	</div>
+
+	<form action="/mail/<%= recipient._id %>/report" method="POST" class="login-form">
+		<textarea name=mail[html] placeholder="Briefly explain your reasoning for reporting <%= recipient.firstName %>"></textarea>
+		<button>Report</button>
+	</form>
+<% } %>
+
+
+<% if(subject === "message") { %>
+	<div class="profile-head">
+		<div class="title">
+			<h2>Message <%= recipient.firstName %></h2>
+		</div>
+	</div>
+
+	<form action="/mail/<%= recipient._id %>/message" method="POST" class="login-form">
+		<textarea name=mail[html] placeholder="Message"></textarea>
+		<button>Send Message</button>
+	</form>
+<% } %>
+
+<% include ./partials/footer %>

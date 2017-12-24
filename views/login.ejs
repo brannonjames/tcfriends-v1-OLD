@@ -1,0 +1,28 @@
+<% include ./partials/header %>
+
+
+<div class="profile-head">
+	<div class="title">
+		<h2>Login</h2>
+	</div>
+</div>
+
+
+	<form action="/login" method="POST" class="login-form block head-pad">
+		<div class="trans-input">
+			<input required type="text" name="username" class="ipt-ani" id="username">
+			<label for="username" class="lbl-ani">Email</label>
+		</div>
+		
+		<div class="trans-input">
+			<input required type="password" name="password" class="ipt-ani" id="password">
+			<label for="password" class="lbl-ani">Password</label>
+		</div>
+		<input type="submit" value="Login" class="block">
+	</form>
+<div class="have-account">
+	<p>Don't have an account yet? Sign up <a href="/register">Here</a>!</p>	
+</div>	
+	
+		
+<% include ./partials/footer %>		

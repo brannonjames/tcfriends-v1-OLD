@@ -1,0 +1,45 @@
+<% include ../partials/header %>
+
+
+<div class="profile-head">
+	<div class="title">
+		<h3>Add a photo of <%= tmpFriend.name %></h3>
+	</div>
+    <span class="required-field">*Required Field</span>
+</div>
+
+
+
+<form action="/create/new/friend/<%= tmpFriend._id %>" method="POST" class="login-form" enctype="multipart/form-data">
+    <div>
+        <span class="required">*</span>
+        <input type="file" name="photo" id="file-upload" class="required" required>
+        <label for="file-upload"><span>Select A Photo</span></label>
+    </div>
+    <button>Submit</button>
+</form>
+
+
+
+
+
+
+
+<script>
+    function fileUploader() {
+    	var fileInput = document.getElementById("file-upload");
+    	fileInput.addEventListener('change', function(e) {
+    		var inputLabel	= fileInput.nextElementSibling,
+    			labelVal	= inputLabel.innerHTML,
+    			fileName	= e.target.value.split("C:\\fakepath\\").pop();
+    		if(fileName) {
+    			inputLabel.querySelector("span").innerHTML = fileName;
+    		} else {
+    			inputLabel.innerHTML = labelVal;
+    		}
+    	});		
+    }
+    fileUploader();
+</script>
+
+<% include ../partials/footer %>

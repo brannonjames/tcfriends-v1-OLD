@@ -1,0 +1,124 @@
+<% include ../partials/header %>
+
+
+
+<div class="profile-head">
+	<div class="title">
+		<h2>Add a new friend.</h2>
+	</div>
+	<span class="required-field">*Required Field</span>
+</div>
+
+
+<div class="new-friend-form">
+	
+	
+	<form action="/friends/new" method="POST" class="login-form" id="new-friend-form">
+		
+		<div class="trans-input">
+			<span class="required">*</span>
+			<input type="text" name="friend[name]" id="friend-name" class="ipt-ani" required>
+			<label for="friend-name" class="lbl-ani">Name</label>
+		</div>
+			
+		<div class="clear"></div>	
+		<div style="position: relative">
+			<span class="required">*</span>
+			<select name="friend[animal]" id="species" required>
+			    <option value="0" id="title-option" disabled selected>-Species-</option>
+	            <option value="dog" class="animal">Doggo</option>
+	            <option value="cat" class="animal">Kitty</option>
+	            <option value="bird" class="animal">Bird</option>
+	            <option value="reptile" class="animal">Reptile</option>
+	            <option value="smallfurry" class="animal">Small & Furry</option>
+	            <option value="horse" class="animal">Horse</option>
+	            <option value="barnyard" class="animal">Barnyard</option>
+	        </select>
+    	</div>
+        
+		<select name="friend[breeds][0]" id="breed">
+		    <option value="" disabled selected>-Breed-</option>
+        </select>
+
+		<input type="radio" name="friend[sex]" value="M" id="male">
+		<label for="male">Male</label>
+		<input type="radio" name="friend[sex]" value="F" id="female">
+		<label for="female">Female</label>
+		
+		<div id="age_group">
+			<input type="radio" name="friend[age]" value="Baby" id="baby">
+			<label for="baby">Baby</label>
+			<input type="radio" name="friend[age]" value="Young" id="young">
+			<label for="young">Young</label>			
+			<input type="radio" name="friend[age]" value="Adult" id="adult">
+			<label for="adult">Adult</label>
+			<input type="radio" name="friend[age]" value="Senior" id="senior">
+			<label for="senior">Senior</label>
+		</div>
+		
+		<select name="shelter">
+			<option disabled selected>-Shelter-</option>
+			<option disabled>-</option>
+			<option value="">None/Other</option>
+			<option disabled>-</option>
+			<% shelters.forEach(function(shelter) { %>
+					<option value="<%= shelter._id %>"><%= shelter.name %></option>	
+			<% }) %>
+		</select>
+		
+		<input type="submit" value="Continue" class="block">
+	</form>
+</div>
+
+
+
+
+<script>
+// 	var titleOption = document.getElementById("title-option"),
+var animals = document.getElementsByClassName("animal");
+	animals = $(animals).toArray();
+var breedLists = [];
+
+
+<% breeds.forEach(function(animal) { %>
+	breedLists.unshift({name: "<%= animal.animal %>", breeds: "<%= animal.breeds %>".split(",")});
+<% }) %>	
+
+		
+$("#species").change(function() {
+	var breeds = document.getElementById('breed');
+	var species = document.getElementById('species');
+	if(species.value ==="dog" || species.value ==="cat" || species.value ==="bird" || species.value ==="horse"){
+		breeds.innerHTML = "<option value='' disabled selected>-Breed-</option><option value='' disabled>-</option><option value=''>Unknown</option><option value='' disabled>-</option>";
+	} else {
+		breeds.innerHTML = "<option value='' disabled selected>-Breed-</option>";
+	}
+	animals.forEach(function(animal) {
+		if(animal.selected) {
+			for(var i=0; i<breedLists.length; i++) {
+				if(breedLists[i].name == animal.value) {
+					for(j=0; j<breedLists[i].breeds.length; j++) {
+						var option = document.createElement('option');
+						option.text = breedLists[i].breeds[j];
+						option.value = breedLists[i].breeds[j];
+						breeds.options[breeds.options.length] = option;
+					}
+				}
+			}
+		}
+	})
+
+});
+
+
+
+
+
+		
+</script>
+	
+		
+
+		
+		
+<% include ../partials/footer %>		

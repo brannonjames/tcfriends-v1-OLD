@@ -1,0 +1,95 @@
+<% include ../partials/header %>
+
+
+<a href="/<%= friend.url %>/<%= friend.id %>/edit"><i class="fa fa-cog misc-button" id="edit-button" aria-hidden="true"></i></a>
+
+<div class="profile-head" id="friend-head">
+	<div class="title">
+		<h1><%= friend.name %></h1>
+		<% if(friend.animal === "reptile" || friend.animal === "smallfurry" || friend.animal === "barnyard") { %>
+			<p>The <%= friend.breeds[0] %></p>
+		<% } else { %>	
+			<p>The <%= friend.animal %></p>
+		<% } %>	
+	</div>
+</div>
+
+
+<div class="friend-photos-back">
+	<ul class="friend-photos">
+		<li>
+			<div onclick="loadSlideshow(0)" class="thumbnail" style="background-image: url(<%= friend.uploads.photos[0].path %>)"></a>
+		</li>
+		<% for(var i=1; i<friend.uploads.photos.length && i<9;i++){ %>
+			<li>
+				<div onclick="loadSlideshow(<%= i %>)" class="thumbnail profile-thumbnail" style="background-image: url(<%= friend.uploads.photos[i].path %>)"></div>
+			</li>
+		<% } %>
+			<% if (currentUser && friend.human.id.equals(currentUser._id)) { %>
+				<a href="/<%= friend.url %>/<%= friend._id %>/upload" class="thumbnail profile-thumbnail new-photo">
+					<div class="thumbnail-info">
+		        			<span><i class="fa fa-plus"></i> Add</span>
+		        	</div>
+				</a>
+			<% } %>
+	</ul>
+</div>
+
+
+
+<div class="clear"></div>
+
+<div class="details">
+	<form action="/friends/new" method="POST" class="login-form" id="new-friend-form">
+		<textarea><%= friend.description %></textarea>
+	</form>
+</div>
+
+
+<div class="shelter-info">
+	<div class="profile-head">
+		<h2>Shelter</h2>
+	</div>
+	<% if(friend.shelter) { %>
+		<ul>
+			<li><%= friend.shelter.name %></li>
+			<li><%= friend.shelter.email %></li>
+			<li><%= friend.shelter.address1 %></li>
+			<li><%= friend.shelter.address2 %></li>
+			<li><%= friend.shelter.city %><% if(friend.shelter.state){ %>, <%= friend.shelter.state %><% } if(friend.shelter.zip){ %> <%= friend.shelter.zip %><% }%></li>
+			<li><%= friend.shelter.phone %></li>
+		</ul>
+	<% } %>
+</div>
+
+<% if (currentUser && friend.human.id.equals(currentUser._id)) { %>
+		<div class="profile-buttons">
+			<form action="/humans/" + <%= friend._id %> + "/edit" method="GET" class="login-form">
+				<button  id="profile-edit"><i class="fa fa-cog" aria-hidden="true"></i> Edit Profile</button>
+			</form>
+			
+			<form action="/friends/<%= friend._id %>/delete" method="GET" class="login-form">
+				<button id="profile-delete" onclick="return confirm('Are you sure you want to delete <%= friend.name %>?');"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete Friend</button>
+			</form>
+		</div>
+	<% } %>
+
+
+<footer>Submitted by <a href="/humans/<%= friend.human.id %>"><%= friend.human.name %></a></footer>
+
+
+
+<script>
+	$(document).ready(function() {
+		if(<%= friend.uploads.photos.length %> < 2) {
+			centerSinglePhoto();
+			$(window).resize(function() {
+				centerSinglePhoto();
+			})
+		}
+	});
+</script>
+
+
+
+<% include ../partials/footer %>

@@ -1,0 +1,70 @@
+<% include ../partials/header %>
+		
+		
+
+<div class="profile-head" id="human-head">
+	<% if(currentUser && currentUser._id.equals(human._id)) { %>
+		<a href="/humans/<%= human._id %>/new_dp" class="human-dp" style="background-image: url('<%= human.dp.url %>')"></a>
+	<% } else { %>	
+		<div class="human-dp" style="background-image: url('<%= human.dp.url %>')"></div>
+	<% } %>	
+	<div class="title">
+		<h2><%= human.firstName %> <%= human.lastName[0] %>.</h2>
+		<p>The Human</p>
+		<p><%= human.city %></p>
+	</div>
+	<% if (currentUser && currentUser._id.equals(human._id)) { %>
+		<div class="profile-buttons">
+			<form action="/friends/new" method="GET" class="login-form">
+				<button id="profile-add"><i class="fa fa-plus" aria-hidden="true"></i> New Friend</button>
+			</form>
+		</div>
+	<% } else { %>
+		<div class="profile-buttons">
+			<form action="/mail/<%= human._id %>/message" method="GET" class="login-form">
+				<button id="profile-message"><i class="fa fa-envelope-o" aria-hidden="true"></i> Message</button>
+			</form>
+			
+			<form action="/mail/<%= human._id %>/report" method="GET" class="login-form">
+				<button><h4><i class="fa fa-flag-o" aria-hidden="true"></i> Report</h4></button>
+			</form>
+		</div>
+	<% } %>	
+	<div class="clear"></div>
+</div>
+
+
+
+		
+
+		
+		
+	
+
+
+		<div id="profile-friends">
+			<h4>Friends (<%= human.friends.length %>)</h4>
+			<!--<hr class="form-hr" />-->
+			
+			<ul>
+				<% for (var i=0; i<human.friends.length && i<5; i++) { %>
+					<li>
+						<a href="/<%= human.friends[i].url %>" class="thumbnail profile-thumbnail" style="background-image: url('<%= human.friends[i].uploads.photos[0].url %>')">
+							<div class="thumbnail-info">
+								<span><%= human.friends[i].name %></span>
+							</div>
+						</a>
+					</li>
+				<% } %>	
+				<% if(human.friends.length > 5) { %>
+						<a href="/humans/<%= human._id %>/friends" class="thumbnail profile-thumbnail" style="background-image: url('/viewall.png')" id="thumbnail-view-all">
+							<div class="thumbnail-info">
+								<span>View All</span>
+							</div>
+						</a>
+				<% } %>		
+			</ul>
+		</div>
+
+
+<% include ../partials/footer %>

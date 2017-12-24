@@ -1,0 +1,20 @@
+<% include ../partials/header %>
+
+
+<div class="profile-head">
+	<div class="title">
+		<h2>Humans</h2>
+	</div>
+</div>
+
+<ul>
+    <% humans.forEach(function(human) { %>
+        <li>
+            <a href="/humans/<%= human._id %>" class="thumbnail profile-thumbnail" style="background-image: url('<%= human.dp.url %>')">
+            </a>
+        </li>
+    <% }); %>
+</ul>
+
+
+<% include ../partials/footer %>

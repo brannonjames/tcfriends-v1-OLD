@@ -1,0 +1,30 @@
+<% include ../partials/header %>
+
+
+<div class="profile-head">
+	<div class="title">
+		<p>Upload New Display Photo</p>
+	</div>
+</div>
+
+
+
+
+    <form action="/humans/<%= human._id %>/new_dp" method="POST" class="login-form" enctype="multipart/form-data">
+        <input type="file" name="dp" id="file-upload">
+        <label for="file-upload"><span>Select A Photo</span></label>
+    <button>Submit</button>
+    </form>
+    
+
+
+
+
+
+<script>
+	$(document).ready(function() {
+		fileUploader();
+	});
+</script>
+
+<% include ../partials/footer %>

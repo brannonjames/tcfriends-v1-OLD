@@ -1,0 +1,20 @@
+<% include ../partials/header %>
+
+
+<div class="profile-head">
+	<div class="title">
+		<h2><a href="/humans/<%= human._id %>"><%= human.firstName %></a>'s Friends</h2>
+	</div>
+</div>
+
+<ul>
+    <% human.friends.forEach(function(friend, i) { %>
+        <li>
+            <a href="/<%= friend.url %>" class="thumbnail profile-thumbnail" style="background-image: url('<%= friend.uploads.photos[0].path %>')">
+            </a>
+        </li>
+    <% }); %>
+</ul>
+
+
+<% include ../partials/footer %>

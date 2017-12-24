@@ -1,0 +1,41 @@
+<% include ../partials/header %>
+
+
+<div class="profile-head">
+	<div class="title">
+		<p>Add a photo of <%= friend.name %></p>
+	</div>
+</div>
+
+
+
+
+    <form action="/<%= friend.url %>/<%= friend._id %>/upload" method="POST" class="login-form" enctype="multipart/form-data">
+        <input type="file" name="photo" id="file-upload">
+        <label for="file-upload"><span>Select A Photo</span></label>
+    <button>Submit</button>
+    </form>
+    
+
+
+
+
+
+<script>
+    function fileUploader() {
+    	var fileInput = document.getElementById("file-upload");
+    	fileInput.addEventListener('change', function(e) {
+    		var inputLabel	= fileInput.nextElementSibling,
+    			labelVal	= inputLabel.innerHTML,
+    			fileName	= e.target.value.split("C:\\fakepath\\").pop();
+    		if(fileName) {
+    			inputLabel.querySelector("span").innerHTML = fileName;
+    		} else {
+    			inputLabel.innerHTML = labelVal;
+    		}
+    	});		
+    }
+    fileUploader();
+</script>
+
+<% include ../partials/footer %>

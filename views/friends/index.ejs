@@ -1,0 +1,52 @@
+<% include ../partials/header %>
+
+
+<!-- <i class="fa fa-search misc-button" id="search-button" aria-hidden="true"></i> -->
+			
+			
+<form action="/friends/search" method="POST" id="search-form" class="login-form">
+	<input type="text" placeholder="Search Name" name="search">
+	<input type="submit" value="Search">
+</form>
+
+
+<% if (friends && friends.length > 0) { %>
+
+    <div class="profile-head">
+    	<div class="title">
+    		<h2>All The Friends</h2>
+    	</div>
+    </div>	
+
+
+
+    <ul>
+        <% for(var i=friends.length - 1; i >= 0; i--) { %>
+        <li>
+            <a href="/<%= friends[i].url %>" class="thumbnail profile-thumbnail" style="background-image: url('<%= friends[i].uploads.photos[0].url %>')">
+                <div class="thumbnail-info">
+        			<span class="float-left"><%= friends[i].name %></span>
+        		</div>
+            </a>
+        </li>    
+        <% } %> 
+    </ul>
+
+    <div class="clear"></div>
+
+    <% if(numPages > 1) { %>
+        <div class="page-selector">
+            <% if(page > 1) { %>
+                <a href="/friends/page/<%= page - 1 %>" class="prev-page"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+            <% } %>
+            <%  if(page !== numPages) { %>
+                <a href="/friends/page/<%= page + 1 %>" class="next-page"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+            <% } %>
+            <div class="clear"></div>
+            <h4><%= page %> / <%= numPages %></h4>
+        </div>
+    <% } %>
+
+<% } %>
+
+<% include ../partials/footer %>

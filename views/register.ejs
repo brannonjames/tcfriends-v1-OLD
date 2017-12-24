@@ -1,0 +1,54 @@
+<% include ./partials/header %>
+
+<div class="profile-head">
+	<div class="title">
+		<h2>Sign Up</h2>
+	</div>
+	<span class="required-field">*Required Field</span>
+</div>
+
+
+
+	<form action="/register" method="POST" class="login-form block head-pad">
+		<div class="trans-input">
+			<span class="required">*</span>
+			<input required type="text" name="user[firstName]" class="ipt-ani" id="first-name" value="<% if(temp && temp.firstName){%><%=temp.firstName%><%}%>">
+			<label for="first-name" class="lbl-ani">First Name</label>
+		</div>
+		
+		<div class="trans-input">
+			<span class="required">*</span>
+			<input required type="text" name="user[lastName]" class="ipt-ani" id="last-name" value="<% if(temp && temp.lastName){%><%=temp.lastName%><%}%>">
+			<label for="last-name" class="lbl-ani">Last Name</label>
+		</div>
+		
+		<div class="trans-input">
+			<span class="required">*</span>
+			<input required type="text" name="user[zip]" class="ipt-ani" id="zip" pattern=".{5,5}" title="Please enter a valid Zip Code" value="<% if(temp && temp.zip){%><%=temp.zip%><%}%>">
+			<label for="zip" class="lbl-ani">Zip Code</label>
+		</div>
+		
+		<div class="trans-input">
+			<span class="required">*</span>
+			<input required type="email" name="username" class="ipt-ani" id="username" value="<% if(temp && temp.username){%><%=temp.username%><%}%>">
+			<label for="username" class="lbl-ani">Email</label>
+		</div>
+		
+		<div class="trans-input">
+			<span class="required">*</span>
+			<input required type="password" name="password" class="ipt-ani" id="password">
+			<label for="password" class="lbl-ani">Password</label>
+		</div>
+		
+		<div class="trans-input">
+			<span class="required">*</span>
+			<input required type="password" name="passwordConfirm" class="ipt-ani" id="confirm-password">
+			<label for="confirm-password" class="lbl-ani">Confirm Password</label>
+		</div>
+			
+		<input type="submit" value="Register" class="block">
+		
+	</form>
+		
+		
+<% include ./partials/footer %>		

@@ -1,0 +1,37 @@
+{
+  "name": "msppets",
+  "version": "1.0.0",
+  "description": "A place for humans to meet animal friends in need of a new home.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "James Brannon",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.5.0",
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
+    "cloudinary": "^1.9.1",
+    "connect-flash": "^0.1.1",
+    "ejs": "^2.5.7",
+    "express": "^4.16.1",
+    "express-busboy": "^6.0.1",
+    "express-session": "^1.15.6",
+    "fs": "0.0.1-security",
+    "gridfs-stream": "^1.1.1",
+    "method-override": "^2.3.10",
+    "mongoose": "^4.11.14",
+    "multer": "^1.3.0",
+    "nodemailer": "^4.3.1",
+    "nodemailer-express-handlebars": "^2.0.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^4.2.1",
+    "pet-finder-api": "^1.0.1",
+    "petfinder": "^0.1.1",
+    "query-string": "^5.0.1",
+    "zipcodes": "^6.0.0"
+  }
+}
