@@ -52,10 +52,11 @@ passport.deserializeUser(Human.deserializeUser());
 
 
 cloudinary.config({
-    cloud_name: "tcfriends",
-    api_key: "782811531184229",
-    api_secret: "SihJVkAfDaSuDSkJ4nL2n6gZPZc"
+    cloud_name: process.env.CLOUDNAME,
+    api_key: process.env.CLOUDKEY,
+    api_secret: process.env.CLOUDSECRET
 });
+
 
 
 app.use(function(req, res, next) {
