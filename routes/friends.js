@@ -235,6 +235,10 @@ router.post("/friends/new/more_info/:tmpfriend_id", function(req, res) {
         }
         foundTmpFriend.description = req.body.description;
         if(!foundTmpFriend.shelter) {
+            if (!req.body.shelter.email) {
+                req.flash("error", "Please provide at least a contact email");
+                return res.redirect("back");
+            }
             // foundTmpFriend.shelter = req.body.shelter;
             Shelter.create(req.body.shelter, function(err, newShelter) {
                 if (err) {
@@ -247,10 +251,6 @@ router.post("/friends/new/more_info/:tmpfriend_id", function(req, res) {
         foundTmpFriend.save(function(err) {
             if(err) {
                 return middle.error(req, res, err);
-            }
-            if (!req.body.shelter.email) {
-                req.flash("error", "Please provide at least a contact email");
-                return res.redirect("back");
             }
             res.redirect("/friends/new/upload/" + foundTmpFriend._id);
         });

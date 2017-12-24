@@ -25,8 +25,8 @@ app.use(express.static(__dirname + "/public"));
 app.use(flash());
 
 
-dbFunc.seedBreed(true);
-dbFunc.seedShelter(true);
+dbFunc.seedBreed(false);
+dbFunc.seedShelter(false);
 
 dbFunc.resetHuman(false);
 dbFunc.resetFriend(false);
@@ -52,11 +52,10 @@ passport.deserializeUser(Human.deserializeUser());
 
 
 cloudinary.config({
-    cloud_name: process.env.CLOUDNAME,
-    api_key: process.env.CLOUDKEY,
-    api_secret: process.env.CLOUDSECRET
+    cloud_name: "tcfriends",
+    api_key: "782811531184229",
+    api_secret: "SihJVkAfDaSuDSkJ4nL2n6gZPZc"
 });
-
 
 
 app.use(function(req, res, next) {
