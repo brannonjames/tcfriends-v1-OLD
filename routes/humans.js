@@ -86,9 +86,9 @@ router.post("/humans/:human_id/new_dp", middle.checkHumanOwner, upload.single("d
             foundHuman.dp.format = newDp.format;
             foundHuman.dp.original_filename = newDp.original_filename;
             foundHuman.save();
-            if(foundHuman.dp && foundHuman.dp.original_filename) {
-                fs.unlinkSync("public/uploads/" + foundHuman.dp.original_filename + "." + foundHuman.dp.format);
-            }
+            // if(foundHuman.dp && foundHuman.dp.original_filename) {
+            //     fs.unlinkSync("public/uploads/" + foundHuman.dp.original_filename + "." + foundHuman.dp.format);
+            // }
             res.redirect("/humans/" + req.params.human_id);
         });
     });
