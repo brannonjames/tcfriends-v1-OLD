@@ -308,7 +308,7 @@ textarea {
 	width: 96%;
 	padding: 10px 4%;
 	background-color: rgb(0, 38, 66);
-	background-color: rgba(0, 38, 66, .3);
+	background-color: rgba(0, 38, 66, .50);
 	position: absolute;
 	bottom: 0px;
 	font-size: .8em;
@@ -822,8 +822,8 @@ input[type=submit] {
 
 
 .profile-thumbnail .thumbnail-info {
-	font-size: .6em;
-	padding: 4px;
+	/*font-size: .6em; */
+	padding: 6px 4%;
 }
 
 
