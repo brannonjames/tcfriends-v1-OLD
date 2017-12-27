@@ -12,7 +12,7 @@ $ brew install mongodb
 ```
 
 ### Install dependencies
-
+  
 ```bash
 $ npm install
 ```
