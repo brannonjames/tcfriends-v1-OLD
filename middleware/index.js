@@ -2,7 +2,7 @@ var Friend          = require("../models/friend"),
     Human           = require("../models/human"),
     Breed           = require("../models/breed"),
     multer          = require("multer"),
-    petfinder       = require("petfinder")("37a7e429557d82083bea50a3525de2c9", "3ef5471d7cded3a0201f001f83d46a5f"); 
+    petfinder       = require("petfinder")(process.env.petKey, process.env.petSecret); 
 
 
 module.exports = {

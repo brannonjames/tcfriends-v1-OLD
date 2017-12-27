@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 var express             = require("express"),
     app                 = express(),
     indexRoutes         =require("./routes"),
@@ -26,7 +28,7 @@ app.use(flash());
 
 
 dbFunc.seedBreed(false);
-dbFunc.seedShelter(false);
+dbFunc.seedShelter(true);
 
 dbFunc.resetHuman(false);
 dbFunc.resetFriend(false);
@@ -51,11 +53,6 @@ passport.serializeUser(Human.serializeUser());
 passport.deserializeUser(Human.deserializeUser());
 
 
-cloudinary.config({
-    cloud_name: "tcfriends",
-    api_key: "782811531184229",
-    api_secret: "SihJVkAfDaSuDSkJ4nL2n6gZPZc"
-});
 
 
 app.use(function(req, res, next) {

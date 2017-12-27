@@ -10,7 +10,7 @@
 <ul>
     <% human.friends.forEach(function(friend, i) { %>
         <li>
-            <a href="/<%= friend.url %>" class="thumbnail profile-thumbnail" style="background-image: url('<%= friend.uploads.photos[0].path %>')">
+            <a href="/<%= friend.url %>" class="thumbnail profile-thumbnail" style="background-image: url('<%= friend.uploads.photos[0].url %>')">
             </a>
         </li>
     <% }); %>
