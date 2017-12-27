@@ -8,6 +8,7 @@ var express         = require("express"),
     Breed           = require("../models/breed"),
     Shelter         = require("../models/shelter"),
     middle          = require("../middleware"),
+    cloudStorage    = require('multer-storage-cloudinary'),
     fs              = require("fs"),
     cloudinary      = require("cloudinary"),
     mongoose        = require("mongoose"),
@@ -18,28 +19,17 @@ var express         = require("express"),
  // found the method below got it to work with the method below  
 
 
+var storage = cloudStorage({
+    cloudinary: cloudinary,
+    allowedFormats: ['jpg', 'png'],
+    filename: function (req, file, cb) {
+        cb(null, file.filename);
+    }
+});
+ 
+var upload = multer({ storage: storage });
 
- var storage = multer.diskStorage({
-        destination: function (req, file, cb) {
-            cb(null, "./public/uploads");
-        },
-        filename: function (req, file, cb) {
-            file.filename = file.fieldname + "-" + Date.now();
-            switch (file.mimetype) {
-                case "image/png" :
-                    file.filename += ".png";
-                    break;
-                case "image/jpeg":
-                    file.filename += ".jpg";
-                    break;
-                default:
-                    break;    
-            }
-            cb(null, file.filename);
-        }
-    });
 
-var upload = multer({storage: storage})
 
 
 setInterval(function () {
