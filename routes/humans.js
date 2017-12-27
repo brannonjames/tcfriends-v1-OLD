@@ -5,34 +5,22 @@ var express         = require("express"),
     multer          = require("multer"),
     nodemailer      = require("nodemailer"),
     cloudinary      = require("cloudinary"),
+    cloudStorage    = require('multer-storage-cloudinary'),
     fs              = require("fs"),
     middle          = require("../middleware");
 
 
 
 
-var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, "./public/uploads");
-    },
+var storage = cloudStorage({
+    cloudinary: cloudinary,
+    allowedFormats: ['jpg', 'png'],
     filename: function (req, file, cb) {
-        file.filename = file.fieldname + "-" + Date.now();
-        switch (file.mimetype) {
-            case "image/png" :
-                file.filename += ".png";
-                break;
-            case "image/jpeg":
-                file.filename += ".jpg";
-                break;
-            default:
-                break;    
-        }
         cb(null, file.filename);
     }
 });
-
-
-var upload          = multer({storage: storage});
+ 
+var upload = multer({ storage: storage });
 
 
     
@@ -69,11 +57,11 @@ router.get("/humans/:human_id/new_dp", middle.checkHumanOwner, function(req, res
 
 
 router.post("/humans/:human_id/new_dp", middle.checkHumanOwner, upload.single("dp"), function(req, res) {
-    Human.findById(req.params.human_id, function(err, foundHuman) {
-        if(err) {
-            return middle.error(req, res, err);
-        }
-        cloudinary.v2.uploader.upload(req.file.path, function(err, newDp) {
+    if(req.file) {
+        Human.findById(req.params.human_id, function(err, foundHuman) {
+            if(err) {
+                return middle.error(req, res, err);
+            }
             if(foundHuman.dp.url !== "/default_dp.png") {
                 cloudinary.v2.uploader.destroy(foundHuman.dp.public_id, function(err) {
                     if(err) {
@@ -81,17 +69,17 @@ router.post("/humans/:human_id/new_dp", middle.checkHumanOwner, upload.single("d
                     }
                 });
             }
-            foundHuman.dp.url = newDp.url;
-            foundHuman.dp.public_id = newDp.public_id;
-            foundHuman.dp.format = newDp.format;
-            foundHuman.dp.original_filename = newDp.original_filename;
-            foundHuman.save();
-            // if(foundHuman.dp && foundHuman.dp.original_filename) {
-            //     fs.unlinkSync("public/uploads/" + foundHuman.dp.original_filename + "." + foundHuman.dp.format);
-            // }
-            res.redirect("/humans/" + req.params.human_id);
+            foundHuman.dp = {
+                url: req.file.url,
+                public_id: req.file.public_id
+            }
+            foundHuman.save(function() { 
+                res.redirect("/humans/" + req.params.human_id);
+            });
         });
-    });
+    } else {
+        middle.error(req, res);
+    }
 });
 
 

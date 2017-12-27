@@ -75,9 +75,13 @@ module.exports = {
         }); 
     },
 
-    error: function(req, res, err) {
+    error: function(req, res, err, message) {
         console.log(err);
-        req.flash("error", "An error has occured");
+        if(message) {
+            req.flash("error", message);
+        } else {
+            req.flash("error", "An error has occured");
+        }
         res.redirect("/feed/1");
     }
 
