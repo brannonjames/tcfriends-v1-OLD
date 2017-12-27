@@ -488,23 +488,27 @@ router.post("/delete/photo/:friend_id/:photo_id", function(req, res) {
         if (err) {
             return middle.error(req, res, err);
         }
-        foundFriend.uploads.photos.forEach(function(image, i) {
-            if (image.id._id.equals(req.params.photo_id)) {
-                foundFriend.uploads.photos.splice(i, 1);
-                foundFriend.save();
-                Image.findByIdAndRemove(image.id._id, function(err, foundImage) {
-                    if(err) {
-                        return middle.error(req, res, err);
-                    }
-                    cloudinary.v2.uploader.destroy(foundImage.public_id, function(err) {
+        if(foundFriend.uploads.photos.length > 1) {
+            foundFriend.uploads.photos.forEach(function(image, i) {
+                if (image.id._id.equals(req.params.photo_id)) {
+                    foundFriend.uploads.photos.splice(i, 1);
+                    foundFriend.save();
+                    Image.findByIdAndRemove(image.id._id, function(err, foundImage) {
                         if(err) {
                             return middle.error(req, res, err);
                         }
-                        res.redirect("/" + foundFriend.url);
+                        cloudinary.v2.uploader.destroy(foundImage.public_id, function(err) {
+                            if(err) {
+                                return middle.error(req, res, err);
+                            }
+                            res.redirect("/" + foundFriend.url);
+                        });
                     });
-                });
-            } 
-        });
+                } 
+            });
+        } else {
+            middle.error(req, res);
+        }
     });
 
 });
