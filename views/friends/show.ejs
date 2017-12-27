@@ -80,11 +80,9 @@
 		<% if(friend.sex === "M") { %>
 			<li>Male</li>
 		<% } %>
-		<% else if(friend.sex === "F") { %>
+		<% if(friend.sex === "F") { %>
 			<li>Female</li>
-		<% } else { %>
-			<li><%= friend.sex %>
-		<%  } %>		
+		<% } %>		
 		<% if(friend.breeds[0]) { %>
 			<li><%= friend.breeds[0] %></li>
 		<% } %>
