@@ -11,8 +11,7 @@ var express         = require("express"),
     cloudStorage    = require('multer-storage-cloudinary'),
     fs              = require("fs"),
     cloudinary      = require("cloudinary"),
-    mongoose        = require("mongoose"),
-    petfinder       = require("petfinder")("37a7e429557d82083bea50a3525de2c9", "3ef5471d7cded3a0201f001f83d46a5f");
+    mongoose        = require("mongoose");
     
   
  // Actually showing images turned out harder than I thought, finally 

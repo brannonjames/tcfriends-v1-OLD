@@ -6,8 +6,7 @@ var express         = require("express"),
     passport        = require("passport"),
     multer          = require("multer"),
     queryString     = require("query-string"),
-    zipcodes        = require("zipcodes"),
-    petfinder       = require("petfinder")("37a7e429557d82083bea50a3525de2c9", "3ef5471d7cded3a0201f001f83d46a5f");
+    zipcodes        = require("zipcodes");
 
 
 
