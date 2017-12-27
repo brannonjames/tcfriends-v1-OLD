@@ -7,27 +7,12 @@ var express     = require("express"),
     
  
 
-router.get("/mail/:recipient_id/:subject", middle.isLoggedIn, function(req, res) {
-    Human.findById(req.params.recipient_id, function(err, foundRecipient) {
-        if(err) {
-            return middle.error(req, res, err);
-        }
-        if(req.params.subject ==="message" || req.params.subject === "report") {
-            res.render("email", {recipient: foundRecipient, subject: req.params.subject});
-        } else {
-            res.redirect("/humans" + foundRecipient._id)
-        }
-    })
-})
-
-
-
     
 var transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-        user: "msppets@gmail.com",
-        pass: "i am gRoot"
+        user: process.env.mailUser,
+        pass: process.env.mailPass
     }
 });
 
@@ -36,6 +21,24 @@ transporter.use("compile", hbs({
     viewPath: "templates/emails",
     extName: ".hbs"
 }));
+
+
+
+
+
+router.get("/mail/:recipient_id/:subject", middle.isLoggedIn, function(req, res) {
+    Human.findById(req.params.recipient_id, function(err, foundRecipient) {
+        if(err) {
+            return middle.error(req, res, err);
+        }
+        if(req.params.subject === "message" || req.params.subject === "report") {
+            res.render("email", {recipient: foundRecipient, subject: req.params.subject});
+        } else {
+            res.redirect("/humans" + foundRecipient._id)
+        }
+    })
+})
+
 
 
 router.post("/mail/:recipient_id/:subject", middle.isLoggedIn, function(req, res) {

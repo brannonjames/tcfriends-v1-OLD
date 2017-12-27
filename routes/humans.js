@@ -1,12 +1,9 @@
 var express         = require("express"),
     router          = express.Router(),
     Human           = require("../models/human"),
-    Image           = require("../models/image"),
     multer          = require("multer"),
-    nodemailer      = require("nodemailer"),
     cloudinary      = require("cloudinary"),
     cloudStorage    = require('multer-storage-cloudinary'),
-    fs              = require("fs"),
     middle          = require("../middleware");
 
 
@@ -23,7 +20,7 @@ var storage = cloudStorage({
 var upload = multer({ storage: storage });
 
 
-    
+                                                                                // INDEX 
     
 router.get("/humans", function(req, res) {
     Human.find({}, function(err, foundHumans) {
@@ -35,15 +32,20 @@ router.get("/humans", function(req, res) {
 });
 
 
-router.get("/humans/:human_id", function(req, res) {
+
+router.get("/humans/:human_id/friends", function(req, res) {
     Human.findById(req.params.human_id).populate("friends").exec(function(err, foundHuman) {
         if(err) {
             return middle.error(req, res, err);
         }
-        res.render("humans/profile", {human: foundHuman});
+        res.render("humans/friends", {human: foundHuman});
     });
-   
 });
+
+
+
+
+                                                                          // NEW
 
 
 router.get("/humans/:human_id/new_dp", middle.checkHumanOwner, function(req, res) {
@@ -83,18 +85,23 @@ router.post("/humans/:human_id/new_dp", middle.checkHumanOwner, upload.single("d
 });
 
 
+                                                                                // SHOW
 
-router.get("/humans/:human_id/friends", function(req, res) {
+
+
+
+
+router.get("/humans/:human_id", function(req, res) {
     Human.findById(req.params.human_id).populate("friends").exec(function(err, foundHuman) {
         if(err) {
             return middle.error(req, res, err);
         }
-        res.render("humans/friends", {human: foundHuman});
+        res.render("humans/profile", {human: foundHuman});
     });
-})
+   
+});
 
-
-
+      
 
 
 
