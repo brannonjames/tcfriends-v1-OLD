@@ -12,10 +12,7 @@ var express             = require("express"),
     LocalStrategy       = require("passport-local"),
     Human               = require("./models/human"),
     flash               = require("connect-flash"),
-    multer              = require("multer"),
-    nodemailer          = require("nodemailer"),
     cloudinary          = require("cloudinary"),
-    testRoutes          = require("./routes/test"),
     dbFunc               = require("./seed");
 
 
@@ -29,11 +26,9 @@ app.use(flash());
 
 dbFunc.seedBreed(false);
 dbFunc.seedShelter(true);
-
 dbFunc.resetHuman(false);
 dbFunc.resetFriend(false);
 dbFunc.resetImage(false);
-
 dbFunc.resetTmpFriend(true);
 
 
@@ -54,33 +49,20 @@ passport.deserializeUser(Human.deserializeUser());
 
 
 
-
 app.use(function(req, res, next) {
     res.locals.path = req.originalUrl;
     res.locals.currentUser = req.user;
     res.locals.error = req.flash("error");
     res.locals.success = req.flash("success");
-    next();
-});
-
-
-app.use(function(req, res, next) {
     res.locals.title = "TC Friends";
     next();
 });
-
-
-
-
-  
 
 
 app.use(mailRoutes);
 app.use(indexRoutes);
 app.use(humanRoutes);
 app.use(friendRoutes);
-app.use(testRoutes);
-
 
 
 
