@@ -11,6 +11,9 @@
     <% humans.forEach(function(human) { %>
         <li>
             <a href="/humans/<%= human._id %>" class="thumbnail profile-thumbnail" style="background-image: url('<%= human.dp.url %>')">
+            	<div class="thumbnail-info">
+					<span><%= human.firstName %></span>
+				</div>
             </a>
         </li>
     <% }); %>

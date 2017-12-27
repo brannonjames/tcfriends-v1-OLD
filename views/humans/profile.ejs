@@ -42,29 +42,29 @@
 	
 
 
-		<div id="profile-friends">
-			<h4>Friends (<%= human.friends.length %>)</h4>
-			<!--<hr class="form-hr" />-->
-			
-			<ul>
-				<% for (var i=0; i<human.friends.length && i<5; i++) { %>
-					<li>
-						<a href="/<%= human.friends[i].url %>" class="thumbnail profile-thumbnail" style="background-image: url('<%= human.friends[i].uploads.photos[0].url %>')">
-							<div class="thumbnail-info">
-								<span><%= human.friends[i].name %></span>
-							</div>
-						</a>
-					</li>
-				<% } %>	
-				<% if(human.friends.length > 5) { %>
-						<a href="/humans/<%= human._id %>/friends" class="thumbnail profile-thumbnail" style="background-image: url('/viewall.png')" id="thumbnail-view-all">
-							<div class="thumbnail-info">
-								<span>View All</span>
-							</div>
-						</a>
-				<% } %>		
-			</ul>
-		</div>
+<div id="profile-friends">
+	<h4>Friends (<%= human.friends.length %>)</h4>
+	<!--<hr class="form-hr" />-->
+	
+	<ul>
+		<% for (var i=0; i<human.friends.length && i<5; i++) { %>
+			<li>
+				<a href="/<%= human.friends[i].url %>" class="thumbnail profile-thumbnail" style="background-image: url('<%= human.friends[i].uploads.photos[0].url %>')">
+					<div class="thumbnail-info">
+						<span><%= human.friends[i].name %></span>
+					</div>
+				</a>
+			</li>
+		<% } %>	
+		<% if(human.friends.length > 5) { %>
+				<a href="/humans/<%= human._id %>/friends" class="thumbnail profile-thumbnail" style="background-image: url('/viewall.png')" id="thumbnail-view-all">
+					<div class="thumbnail-info">
+						<span>View All</span>
+					</div>
+				</a>
+		<% } %>		
+	</ul>
+</div>
 
 
 <% include ../partials/footer %>
