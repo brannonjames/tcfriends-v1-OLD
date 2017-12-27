@@ -304,33 +304,29 @@ router.post("/create/new/friend/:tmpfriend_id", upload.single("photo"), function
                 
             });
             if(req.file) {
-                cloudinary.v2.uploader.upload(req.file.path, function(err, cloudResult) {
-                    if(err) {
+                Image.create(req.file, function(err, newImage) {
+                    if(err){
                         return middle.error(req, res, err);
                     }
-                    Image.create(cloudResult, function(err, newImage) {
-                        if(err){
-                            return middle.error(req, res, err);
-                        }
-                        if(req.user.postStatus >= postLimit) {
-                            req.user.canPost = false;
-                            // req.user.save();
-                        }
-                        setTimeout(function () {
-                            req.user.postStatus = 0;
-                            req.user.canPost = true;
-                            // req.user.save();
-                        }, 120000);
-                        newImage.human.id = req.user;
-                        newImage.friend = newFriend;
-                        newImage.score = Math.floor((Math.random() * 100) + 950);
-                        newImage.save();
-                        fs.unlinkSync("public/uploads/" + newImage.original_filename + "." + newImage.format);
-                        newFriend.uploads.photos.unshift({id: newImage, url: newImage.url});
-                        newFriend.save();
-                        res.redirect("/" + newFriend.url);
-                    });
-                })
+                    if(req.user.postStatus >= postLimit) {
+                        req.user.canPost = false;
+                        // req.user.save();
+                    }
+                    setTimeout(function () {
+                        req.user.postStatus = 0;
+                        req.user.canPost = true;
+                        // req.user.save();
+                    }, 120000);
+                    newImage.human.id = req.user;
+                    newImage.friend = newFriend;
+                    newImage.score = Math.floor((Math.random() * 100) + 950);
+                    newImage.save();
+                    newFriend.uploads.photos.unshift({id: newImage, url: newImage.url});
+                    newFriend.save();
+                    res.redirect("/" + newFriend.url);
+                }); 
+            } else {
+                return middle.error(req, res);
             }
         });
     });
@@ -362,34 +358,30 @@ router.post("/:friend_url/:friend_id/upload", middle.checkFriendOwner, upload.si
             return middle.error(req, res, err);
         }
         if(req.file) {
-            cloudinary.v2.uploader.upload(req.file.path, function(err, cloudResult) {
-                if(err) {
+            Image.create(req.file, function(err, newImage) {
+                if(err){
                     return middle.error(req, res, err);
                 }
-                Image.create(cloudResult, function(err, newImage) {
-                    if(err){
-                        return middle.error(req, res, err);
-                    }
-                    if(req.user.postStatus >= postLimit) {
-                        req.user.canPost = false;
-                        req.user.save();
-                    }
-                    setTimeout(function () {
-                        req.user.postStatus = 0;
-                        req.user.canPost = true;
-                        req.user.save();
-                    }, 120000);
-                    newImage.human.id = req.user;
-                    newImage.friend = foundFriend;
-                    newImage.score = Math.floor((Math.random() * 100) + 950);
-                    newImage.save();
-                    foundFriend.uploads.photos.splice(1, 0, {id: newImage, url: newImage.url});
-                    foundFriend.save();
-                    fs.unlinkSync("public/uploads/" + newImage.original_filename + "." + newImage.format);
-                    res.redirect("/" + req.params.friend_url);
-                });
+                if(req.user.postStatus >= postLimit) {
+                    req.user.canPost = false;
+                    req.user.save();
+                }
+                setTimeout(function () {
+                    req.user.postStatus = 0;
+                    req.user.canPost = true;
+                    req.user.save();
+                }, 120000);
+                newImage.human.id = req.user;
+                newImage.friend = foundFriend;
+                newImage.score = Math.floor((Math.random() * 100) + 950);
+                newImage.save();
+                foundFriend.uploads.photos.splice(1, 0, {id: newImage, url: newImage.url});
+                foundFriend.save();
+                res.redirect("/" + req.params.friend_url);
             });    
-        }     
+        } else {
+            return middle.error(req, res);
+        }    
     });
 
 });
