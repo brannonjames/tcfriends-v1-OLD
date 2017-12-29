@@ -25,10 +25,10 @@ app.use(flash());
 
 
 dbFunc.seedBreed(false);
-dbFunc.seedShelter(true);
+dbFunc.seedShelter(false);
 dbFunc.resetHuman(false);
-dbFunc.resetFriend(false);
-dbFunc.resetImage(false);
+dbFunc.resetFriend(true);
+dbFunc.resetImage(true);
 dbFunc.resetTmpFriend(true);
 
 
