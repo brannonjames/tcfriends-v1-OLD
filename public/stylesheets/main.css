@@ -1,7 +1,7 @@
 body {
 	margin: 0;
 	padding: 0;
-	background-color: #f9fafc;
+	background-color: #f9fafc
 	color: #002642;
 }
 
@@ -435,6 +435,7 @@ input[type=submit] {
 	margin: inherit 0;
 	background-color: white;
 	text-align: center;
+	border: 1px solid black;
 }
 
 
