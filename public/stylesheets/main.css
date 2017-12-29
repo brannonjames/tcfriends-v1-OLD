@@ -1,7 +1,7 @@
 body {
 	margin: 0;
 	padding: 0;
-	background-color: #fcfdff;
+	background-color: #f9fafc;
 	color: #002642;
 }
 
@@ -203,12 +203,6 @@ textarea {
 }
 
 
-/*.menu {
-	z-index: 3;
-}
-*/
-
-
 
 
 .menu a, .menu button {
@@ -357,7 +351,7 @@ select,
 label,
 button,
 textarea {
-	/*-webkit-appearance: none;*/
+	-webkit-appearance: none;
 	border-radius: 5px;
 	box-sizing: border-box;
 	background-color: white;
