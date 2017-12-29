@@ -284,7 +284,7 @@ router.post("/create/new/friend/:tmpfriend_id", upload.single("photo"), function
                     newImage.largeThumb = cloudinary.url(newImage.public_id, {secure: true, crop: "limit", width: 480, height: 480, quality: 80});
                     newImage.human.id = req.user;
                     newImage.friend = newFriend;
-                    newImage.score = Math.floor((Math.random() * 100) + 950);
+                    newImage.score = (Math.random() * 400) + 800;
                     newImage.save();
                     newFriend.uploads.photos.unshift({id: newImage, url: newImage.url, smallThumb: newImage.smallThumb, largeThumb: newImage.largeThumb});
                     newFriend.save();
@@ -336,7 +336,7 @@ router.post("/:friend_url/:friend_id/upload", middle.checkFriendOwner, upload.si
                 newImage.largeThumb = cloudinary.url(newImage.public_id, {secure: true, crop: "limit", width: 480, height: 480, quality: 80});
                 newImage.human.id = req.user;
                 newImage.friend = foundFriend;
-                newImage.score = Math.floor((Math.random() * 100) + 950);
+                newImage.score = (Math.random() * 400) + 800;
                 newImage.save();
                 foundFriend.uploads.photos.unshift({id: newImage, url: newImage.url, smallThumb: newImage.smallThumb, largeThumb: newImage.largeThumb});
                 foundFriend.save();
