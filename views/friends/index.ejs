@@ -23,7 +23,7 @@
     <ul>
         <% for(var i=friends.length - 1; i >= 0; i--) { %>
         <li>
-            <a href="/<%= friends[i].url %>" class="thumbnail profile-thumbnail" style="background-image: url('<%= friends[i].uploads.photos[0].url %>')">
+            <a href="/<%= friends[i].url %>" class="thumbnail profile-thumbnail" style="background-image: url('<%= friends[i].uploads.photos[0].smallThumb %>')">
                 <div class="thumbnail-info">
         			<span class="float-left"><%= friends[i].name %></span>
         		</div>

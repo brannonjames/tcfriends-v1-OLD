@@ -13,11 +13,11 @@ var storage = cloudStorage({
     cloudinary: cloudinary,
     allowedFormats: ['jpg', 'png'],
     transformation: {
-        height: 500,
-        width: 500,
+        height: 700,
+        width: 700,
         crop: "limit",
         secure: true,
-        quality: 80
+        quality: 88
     },
     filename: function (req, file, cb) {
         cb(null, file.filename);
