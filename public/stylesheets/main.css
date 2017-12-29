@@ -438,7 +438,7 @@ input[type=submit] {
 
 .login-form input[type=radio] + label {
 	display: inline-block;
-	width: 49%;
+	width: 48%;
 	padding: 12px 0;
 	margin: inherit 0;
 	background-color: white;
@@ -451,13 +451,14 @@ input[type=submit] {
 	color: white;
 }
 
-.login-form #age_group {
+.login-form #age-group {
+	width: 100%;
 	margin: 14px 0;
 }
 
 
-.login-form #age_group input[type=radio] + label {
-	margin: 2px 0;
+.login-form #age-group input[type=radio] + label {
+	margin: 2px 1%;
 }
 
 
@@ -1131,7 +1132,6 @@ footer a {
 	display: none;
 	width: 20%;
 	max-width: 240px;
-	/*margin-left: 4px;*/
 }
 
 #filter-menu input,
@@ -1142,7 +1142,7 @@ footer a {
 	height: 40px;
 	min-width: 0;
 	font-size: .8em;
-	margin: 12px 0;
+	margin: 12px 1%;
 }
 
 #filter-menu .profile-head {
