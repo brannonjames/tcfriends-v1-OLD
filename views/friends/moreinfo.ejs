@@ -28,15 +28,16 @@
     </div>
     
 	<div class="trans-input">
-		<input type="text" name="shelter[name]" class="ipt-ani" id="shelter-name" value="<% if(tmpFriend.shelter && tmpFriend.shelter.name){%><%=tmpFriend.shelter.name%><%}%>">
+		<span class="required">*</span>
+		<input required type="text" name="shelter[name]" class="ipt-ani" id="shelter-name" value="<% if(tmpFriend.shelter && tmpFriend.shelter.name){%><%=tmpFriend.shelter.name%><%}%>">
 		<label for="shelter-name" class="lbl-ani">Name</label>
 	</div>
 	
 	<div class="trans-input">
 		<span class="required">*</span>
-		<input type="email" name="shelter[email]" class="ipt-ani" id="shelter-email" required value="<% if(tmpFriend.shelter && tmpFriend.shelter.email){%><%=tmpFriend.shelter.email%><%}%>">
+		<input required type="email" name="shelter[email]" class="ipt-ani" id="shelter-email" required value="<% if(tmpFriend.shelter && tmpFriend.shelter.email){%><%=tmpFriend.shelter.email%><%}%>">
 		<label for="shelter-email" class="lbl-ani">Email</label>
-		<div id="use-email">
+		<div class="check-option" id="use-email">
 			<input type="checkbox" name="useEmail" id="use-email-input">
 			<label for="use-email-input">Use your login email address</label>
 		</div>
@@ -67,6 +68,11 @@
 		<label for="shelter-zip" class="lbl-ani">Zip</label>
 	</div>
 	<% } %>
+
+	<div class="check-option">
+		<input type="checkbox" name="saveShelter" id="save-shelter-check">
+		<label for="save-shelter-check">Save Shelter to TC Friends</label>
+	</div>
 	
 	<input type="submit" value="Continue">
 	

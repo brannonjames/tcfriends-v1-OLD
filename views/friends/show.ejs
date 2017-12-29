@@ -102,14 +102,14 @@
 	<div class="profile-head">
 		<h2>Shelter</h2>
 	</div>
-	<% if(friend.shelter) { %>
+	<% if(shelter) { %>
 		<ul>
-			<li><%= friend.shelter.name %></li>
-			<li><%= friend.shelter.email %></li>
-			<li><%= friend.shelter.address1 %></li>
-			<li><%= friend.shelter.address2 %></li>
-			<li><%= friend.shelter.city %><% if(friend.shelter.state){ %>, <%= friend.shelter.state %><% } if(friend.shelter.zip){ %> <%= friend.shelter.zip %><% }%></li>
-			<li><%= friend.shelter.phone %></li>
+			<li><%= shelter.name %></li>
+			<li><%= shelter.email %></li>
+			<li><%= shelter.address1 %></li>
+			<li><%= shelter.address2 %></li>
+			<li><%= shelter.city %><% if(shelter.state){ %>, <%= shelter.state %><% } if(shelter.zip){ %> <%= shelter.zip %><% }%></li>
+			<li><%= shelter.phone %></li>
 		
 	<% } %>	
 </div>
