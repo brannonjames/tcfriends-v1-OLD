@@ -15,6 +15,13 @@ var express         = require("express"),
 var storage = cloudStorage({
     cloudinary: cloudinary,
     allowedFormats: ['jpg', 'png'],
+    transformation: {
+        height: 500,
+        width: 500,
+        crop: "limit",
+        secure: true,
+        quality: 80
+    },
     filename: function (req, file, cb) {
         cb(null, file.filename);
     }
