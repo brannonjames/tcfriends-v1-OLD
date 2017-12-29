@@ -11,11 +11,7 @@ var express         = require("express"),
     cloudStorage    = require('multer-storage-cloudinary'),
     cloudinary      = require("cloudinary");
     
-<<<<<<< HEAD
 
-=======
-  
->>>>>>> e360b725dffdfd8e6bc054976a0cd75d58cd22f8
 
 var storage = cloudStorage({
     cloudinary: cloudinary,
