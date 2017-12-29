@@ -248,23 +248,20 @@ textarea {
 
 
 .feed {
-	background-color: #F1F2EB;
 	max-width: 480px;
 	margin: 0 auto;
 }
 
-.feed li {
+.feed a {
 	margin-top: 24px;
-	background-color: #444;
-	border-top-left-radius: 2px;
-	border-top-right-radius: 2px;
-	/*overflow: hidden;*/
+	box-shadow: 1px 1px 4px rgba(0,0,0,0.1);
 }
 
 .feed img {
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
 	margin: 0 auto;
 	width: 100%;
-	/*max-height: 60vh;*/
 	width: 100%;
 }
 
@@ -311,16 +308,15 @@ textarea {
 	background-color: rgba(0, 38, 66, .50);
 	position: absolute;
 	bottom: 0px;
-	font-size: .8em;
 }
 
 .feed-info {
 	position: relative;
 	width: auto;
-	background-color: #383F51;
-	box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-	border-bottom-left-radius: 2px;
-	border-bottom-right-radius: 2px;
+	color: #002633;
+	background-color: #C5D1EB;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
 }
 
 
@@ -386,6 +382,8 @@ select,
 label,
 button,
 textarea {
+	-webkit-appearance: none;
+	border-radius: 5px;
 	box-sizing: border-box;
 	background-color: white;
 	width: 100%;
@@ -396,12 +394,27 @@ textarea {
 	max-width: 460px;
 }
 
+input,
+textarea {
+	border: 1px solid rgb(153, 153, 153);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+	outline:none; 
+    border:1px solid #4D90FE;
+    -webkit-box-shadow: 0px 0px 5px  #4D90FE;
+    box-shadow: 0px 0px 5px  #4D90FE;
+}
 
 .trans-input {
 	position: relative;
 	width: 100%;
 	float: left;
 }
+
+
 
 input[type=text] + label,
 input[type=email] + label,
@@ -430,9 +443,7 @@ select[value=species] {
 	color: blue;
 }
 
-input:focus {
-	outline-color: #93a8ac;
-}
+
 
 input[type=submit] {
 	background-color: #002642;
@@ -711,10 +722,13 @@ input[type=submit] {
 	background-color: black;
 }
 
-.slideshow img {
+.slideshow img,
+.mySlides {
 	display: block;
-	/*position: absolute;*/
-	width: 100%;
+	width: auto;
+	max-height: 96vh;
+	max-width: 100%;
+	margin: 0 auto;
 }
 
 .prev,
@@ -1191,14 +1205,15 @@ footer a {
 }
 
 #use-email {
-	/*position: absolute;*/
-	display: inline;
+	margin: 16px 0;
 }
 
 #use-email input {
+	vertical-align: middle;
+	min-width: 0;
 	display: inline;
-	width: auto;
-	height: auto;
+	width: 25px;
+	height: 25px;
 	margin: 0;
 }
 

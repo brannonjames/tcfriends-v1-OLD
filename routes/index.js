@@ -10,29 +10,6 @@ var express         = require("express"),
 
 
 
-
-var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, "./public/uploads");
-    },
-    filename: function (req, file, cb) {
-        file.filename = file.fieldname + "-" + Date.now();
-        switch (file.mimetype) {
-            case "image/png" :
-                file.filename += ".png";
-                break;
-            case "image/jpeg":
-                file.filename += ".jpg";
-                break;
-            default:
-                break;    
-        }
-        cb(null, file.filename);
-    }
-});
-
-var upload = multer({storage: storage}); 
- 
  
 function compare(a, b) {
     if (a.score > b.score){
@@ -44,13 +21,15 @@ function compare(a, b) {
     return 0;
 } 
  
- 
+                                                                                    // LANDING
  
 router.get("/", function(req, res) {
     res.render("landing");
 }); 
  
  
+                                                                                    // FEED
+
 router.get("/feed/:page", function(req, res) {
     var page = Number(req.params.page);
     var friendsPerPage = 22;
@@ -91,57 +70,7 @@ router.get("/feed/:page", function(req, res) {
 });
 
 
-
-// router.get("/feed/:page/filter/:animal/:sex/:age", function(req, res) {
-
-//     var filterParams = new Object();
-//     if(req.params.animal !== "undefined") {
-//         filterParams["friend.animal"] = req.params.animal;
-//     }
-//     if(req.params.sex !== "undefined") {
-//         filterParams["friend.sex"] = req.params.sex;
-//     }
-//     if(req.params.age !== "undefined") {
-//         filterParams["friend.age"] = req.params.age;
-//     }
-
-
-//     Image.find(filterParams, function(err, images) {
-//     if(err){
-//         return console.log(err.message);
-//     }
-//     var page = Number(req.params.page);
-//     var friendsPerPage = 22;
-//     var numPages = Math.ceil(images.length / friendsPerPage);
-//     if (images.length > 0) {
-//         if(page > numPages) {
-//             res.redirect("/feed/" + numPages + "/filter/" + req.params.animal + "/" + req.params.sex + "/" + req.params.age);
-//         }
-//         else if(page < 1) {
-//             res.redirect("/feed/1/filter/" + req.params.animal + "/" + req.params.sex + "/" + req.params.age);
-//         } else {
-//             images = images.sort(compare);
-//             images = images.slice((friendsPerPage * page) - friendsPerPage, (friendsPerPage * page));
-//         }
-//     } 
-//     res.render("landing", {images: images, page: page, numPages: numPages});
-    
-// }); 
-
-// })
-
-
-// router.post("/feed/filter", function(req, res) {
-//     if(!req.body.filter) {
-//         return res.redirect("/feed/1")
-//     }
-//     res.redirect("/feed/1/filter/" + req.body.filter.animal + "/" + req.body.filter.sex + "/" + req.body.filter.age);
-
-// });
-
-
-
-
+                                                                                    // REGISTER
 
 router.get("/register", function(req, res) {
     if(req.session.tempUser && !req.session.tempUser.seen) {
@@ -191,7 +120,7 @@ router.post("/register", function(req, res) {
     }
 });
 
-
+                                                                                        // LOGIN
 
 
 router.get("/login", function(req, res) {
@@ -209,7 +138,7 @@ router.post("/login", passport.authenticate("local", {
 });
 
 
-
+                                                                                    // LOGOUT
 
 
 
