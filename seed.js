@@ -35,7 +35,7 @@ module.exports = {
         if(seed) {
             Shelter.remove({}, function(err) {
                 if(err){return console.log(err.message)}
-                petfinder.findShelter("Minneapolis, MN", {count: 340}, function(err, shelters) {
+                petfinder.findShelter("Minneapolis, MN", {count: 200}, function(err, shelters) {
                     if(err){return console.log(err.message)}
                     shelters.forEach(function(shelter) {
                         Shelter.create(shelter, function(err, newShelter) {

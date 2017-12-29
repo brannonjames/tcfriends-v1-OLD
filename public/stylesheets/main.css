@@ -353,36 +353,13 @@ textarea {
 
 
 
-#petfinder-help {
-	display: none;
-	background-color: #f4ee97;
-	border-radius: 4px;
-	font-size: .8em;
-	text-indent: 1em;
-	padding: 10px 2%;
-	margin-top: -18px;
-	float: right;
-	width: 96%;
-	max-width: 440px;
-}
-
-/*.fa-question-circle:hover + #petfinder-help {*/
-/*	display: block;*/
-/*}*/
-
-
-#petfinder-help img {
-	display: block;
-	width: 96%;
-	margin: 0 auto;
-}
 
 input,
 select,
 label,
 button,
 textarea {
-	-webkit-appearance: none;
+	/*-webkit-appearance: none;*/
 	border-radius: 5px;
 	box-sizing: border-box;
 	background-color: white;
@@ -1204,20 +1181,21 @@ footer a {
 	right: 0;
 }
 
-#use-email {
+.check-option {
+	display: inline-block;
 	margin: 16px 0;
 }
 
-#use-email input {
+.check-option input {
 	vertical-align: middle;
 	min-width: 0;
 	display: inline;
-	width: 25px;
-	height: 25px;
+	width: auto;
+	height: auto;
 	margin: 0;
 }
 
-#use-email label {
+.check-option label {
 	display: inline;
 	background: none;
 	font-size: .8em;

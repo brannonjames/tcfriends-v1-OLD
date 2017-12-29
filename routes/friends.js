@@ -199,13 +199,17 @@ router.post("/friends/new/more_info/:tmpfriend_id", function(req, res) {
                 req.flash("error", "Please provide at least a contact email");
                 return res.redirect("back");
             }
-            Shelter.create(req.body.shelter, function(err, newShelter) {
-                if (err) {
-                    return middle.error(req, res, err);
-                }
-                foundTmpFriend.shelter = newShelter;
-                foundTmpFriend.save();
-            });
+            if(req.body.saveShelter){
+                Shelter.create(req.body.shelter, function(err, newShelter) {
+                    if (err) {
+                        return middle.error(req, res, err);
+                    }
+                    foundTmpFriend.shelter = newShelter;
+                    foundTmpFriend.save();
+                });
+            } else {
+                foundTmpFriend.contact = req.body.shelter;                    
+            }
         }
         foundTmpFriend.save(function(err) {
             if(err) {
@@ -245,11 +249,8 @@ router.post("/create/new/friend/:tmpfriend_id", upload.single("photo"), function
             description: foundFriend.description,
             sex: foundFriend.sex,
             age: foundFriend.age,
-            size: foundFriend.size,
-            mix: foundFriend.mix,
+            contact: foundFriend.contact,
             animal: foundFriend.animal,
-            shelterId: foundFriend.shelterId,
-            shelterPetId: foundFriend.shelterPetId,
             shelter: foundFriend.shelter
         };
         Friend.create(friend, function(err, newFriend) {
@@ -354,10 +355,16 @@ router.get("/:friend_url", function(req, res) {
         }
         if(foundFriend) {
             for(var i=0,len=foundFriend.uploads.photos.length;i<len;i++) {
-                foundFriend.uploads.photos[i].id.score += 10;
+                foundFriend.uploads.photos[i].id.score += 4;
                 foundFriend.uploads.photos[i].id.save(); 
             }
-            res.render("friends/show", {friend: foundFriend, path: "/:friend_url", slideshow: false});
+            var shelter;
+            if(foundFriend.shelter) {
+                shelter = foundFriend.shelter;
+            } else {
+                shelter = foundFriend.contact;
+            }
+            res.render("friends/show", {friend: foundFriend, path: "/:friend_url", slideshow: false, shelter: shelter});
         } else {
             req.flash("error", "Oops, there isn't anything there!");
             res.redirect("/");
