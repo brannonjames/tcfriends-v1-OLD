@@ -13,14 +13,18 @@ var express         = require("express"),
     cloudinary      = require("cloudinary"),
     mongoose        = require("mongoose");
     
-  
- // Actually showing images turned out harder than I thought, finally 
- // found the method below got it to work with the method below  
 
 
 var storage = cloudStorage({
     cloudinary: cloudinary,
     allowedFormats: ['jpg', 'png'],
+    transformation: {
+        height: 500,
+        width: 500,
+        crop: "limit",
+        secure: true,
+        quality: 80
+    },
     filename: function (req, file, cb) {
         cb(null, file.filename);
     }
