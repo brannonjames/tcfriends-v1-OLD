@@ -28,7 +28,9 @@ var FriendSchema = new mongoose.Schema({
                         type: mongoose.Schema.Types.ObjectId,
                         ref: "Image"
                     },
-                    url: String
+                    url: String,
+                    smallThumb: String,
+                    largeThumb: String
                 }
             ],
             videos: []

@@ -11,6 +11,8 @@ var ImageSchema = new mongoose.Schema({
     created_at: String,
     tags: [],
     url: String,
+    smallThumb: String,
+    largeThumb: String,
     original_filename: String,
     score: Number,
     human: {

@@ -19,11 +19,11 @@
 <div class="friend-photos-back">
 	<ul class="friend-photos">
 		<li>
-			<div onclick="loadSlideshow(0)" class="thumbnail" style="background-image: url(<%= friend.uploads.photos[0].url %>)"></a>
+			<div onclick="loadSlideshow(0)" class="thumbnail" style="background-image: url(<%= friend.uploads.photos[0].largeThumb %>)"></a>
 		</li>
 		<% for(var i=1; i<friend.uploads.photos.length && i<9;i++){ %>
 			<li>
-				<div onclick="loadSlideshow(<%= i %>)" class="thumbnail profile-thumbnail" style="background-image: url(<%= friend.uploads.photos[i].url %>)"></div>
+				<div onclick="loadSlideshow(<%= i %>)" class="thumbnail profile-thumbnail" style="background-image: url(<%= friend.uploads.photos[i].smallThumb %>)"></div>
 			</li>
 		<% } %>
 			<% if (currentUser && friend.human.id.equals(currentUser._id)) { %>
@@ -59,7 +59,7 @@
 					<div class="next" onclick="plusSlides(1)"><i class="fa fa-chevron-right" aria-hidden="true"></i></div>
 					<div class="slidePreviews">
 						<% for (var i = 0, len = friend.uploads.photos.length; i < len; i++) { %>
-					<div onclick="loadSlideshow(<%= i %>)" class="thumbnail slidePreview" style="background-image: url(<%= friend.uploads.photos[i].url %>)"></div>
+					<div onclick="loadSlideshow(<%= i %>)" class="thumbnail slidePreview" style="background-image: url(<%= friend.uploads.photos[i].smallThumb %>)"></div>
 						<% } %>	
 					</div>	
 				<% } %>
