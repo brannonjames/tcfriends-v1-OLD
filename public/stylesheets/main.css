@@ -429,13 +429,14 @@ input[type=submit] {
 
 
 .login-form input[type=radio] + label {
+	box-sizing: border-box;
 	display: inline-block;
-	width: 48%;
+	width: 47%;
 	padding: 12px 0;
-	margin: inherit 0;
 	background-color: white;
 	text-align: center;
 	border: 1px solid black;
+	margin: 0 1%;
 }
 
 
@@ -451,8 +452,11 @@ input[type=submit] {
 
 
 .login-form #age-group input[type=radio] + label {
+	box-sizing: border-box;
 	margin: 2px 1%;
 }
+
+
 
 
 
