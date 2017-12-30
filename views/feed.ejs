@@ -125,7 +125,10 @@
 // 	$(filterDown).hide();
 // }
 $(document).ready(function(){
-	selectFilterForm("<%= query.animal %>", "<%= query.sex %>", "<%= query.age %>");	
+	selectFilterForm("<%= query.animal %>", "<%= query.sex %>", "<%= query.age %>");
+	$(window).resize(function(){
+		
+	})	
 });
 
 
