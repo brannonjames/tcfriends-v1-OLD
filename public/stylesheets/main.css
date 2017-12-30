@@ -1150,6 +1150,7 @@ footer a {
 	top: 100vh;
 	transform: translateY(-50px);
 	text-align: center;
+	display: none;
 }
 
 #jump-to-top:hover {
@@ -1332,9 +1333,6 @@ footer a {
 
 
 @media only screen and (min-width : 755px) {
-	#jump-to-top {
-		display: block;
-	}
 	.details {
 		margin: 24px auto;
 		float: none;
@@ -1353,6 +1351,10 @@ footer a {
 
 
 @media only screen and (min-width : 1024px) {
+	#jump-to-top {
+		display: block;
+	}
+	
 	#landing-layer h1 {
 		font-size: 8vw;
 	}
