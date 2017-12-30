@@ -1209,19 +1209,12 @@ footer a {
 	cursor: pointer;
 }
 
-#filter-menu #filter-up {
-	display: none;
-}
-
 
 
 #filter-menu .profile-head h4 {
 	font-size: .8em;
 }
 
-#filter-menu #age_group {
-	float: left;
-}
 
 #filter-menu button {
 	margin-top: 0;
@@ -1349,12 +1342,50 @@ footer a {
 }
 
 
+@media only screen and (max-width: 1024px) {
+	#filter-menu {
+		width: 80%;
+		margin: 0 auto;
+		background-color: #C5D1EB;
+		border-radius: 8px;
+		max-width: 480px;
+		margin: 24px auto;
+	}
+
+	.filter-form {
+		max-width: 180px;
+		display: none;
+	}
+
+	#filter-menu .profile-head {
+		width: 100%;
+		padding: 8px 0; 
+		border: none;
+	}
+	#filter-menu #filter-toggle {
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 6
+	}
+	#filter-menu .filter-angle {
+		display: inline-block;
+	}
+
+	#filter-menu #filter-up {
+		display: none;
+	}
+}
+
 
 @media only screen and (min-width : 1024px) {
 	#jump-to-top {
 		display: block;
 	}
-	
+
 	#landing-layer h1 {
 		font-size: 8vw;
 	}

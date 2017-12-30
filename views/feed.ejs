@@ -98,8 +98,43 @@
 
 <script>
 
+// function filterToggle(){
+// 	$(filterForm).toggle();
+// 	$(filterUp).toggle();
+// 	$(filterDown).toggle();
+// }
+
+// function filterShow(){
+// 	$(filterForm).show();
+// 	$(filterUp).show();
+// 	$(filterDown).hide();
+// 	$(filterToggleDiv).show();
+// }
+
+// function filterHide(){
+// 	$(filterForm).hide();
+// 	$(filterToggleDiv).show()
+// 	$(filterUp).hide();
+// 	$(filterDown).show();
+// }
+
+// function filterShowOnResize(){
+// 	$(filterForm).show();
+// 	$(filterToggleDiv).hide();
+// 	$(filterUp).hide();
+// 	$(filterDown).hide();
+// }
+	
+
 $(document).ready(function(){
 	selectFilterForm("<%= query.animal %>", "<%= query.sex %>", "<%= query.age %>");
+	$(window).resize(function() {
+		if($(window).width() < 1024) {
+			hideMenu();
+		}
+		if($(window).width() > 1024) {
+			filterShowOnResize();
+		}
 });
 
 </script>

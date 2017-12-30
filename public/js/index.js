@@ -69,25 +69,26 @@ function filterToggle(){
 	$(filterDown).toggle();
 }
 
-function filterShow(){
-	$(filterForm).show();
-	$(filterUp).show();
-	$(filterDown).hide();
-	$(filterToggleDiv).show();
-}
+// function filterShow(){
+// 	$(filterForm).show();
+// 	$(filterUp).show();
+// 	$(filterDown).hide();
+// 	$(filterToggleDiv).show();
+// }
 
-function filterHide(){
-	$(filterForm).hide();
-	$(filterToggleDiv).show()
-	$(filterUp).hide();
-	$(filterDown).show();
-}
+// function filterHide(){
+// 	$(filterForm).hide();
+// 	$(filterToggleDiv).show()
+// 	$(filterUp).hide();
+// 	$(filterDown).show();
+// }
 
-function filterShowOnResize(){
-	$(filterToggleDiv).hide();
-	$(filterUp).hide();
-	$(filterDown).hide();
-}
+// function filterShowOnResize(){
+// 	$(filterForm).show();
+// 	$(filterToggleDiv).hide();
+// 	$(filterUp).hide();
+// 	$(filterDown).hide();
+// }
 		
 
 function selectFilterForm(animal, sex, age) {
@@ -283,22 +284,25 @@ $(document).ready(function() {
 	toggleTextInputLabel();	
 	buttonClicks();
 	showMoreFriendDetails();
-	if($(window).width() < 1024) {
-		hideMenu();
-		filterHide();
-	}
-	if($(window).width() > 1024) {
-		filterShow();
-		filterShowOnResize();
-	}
-	$(window).resize(function() {
-		if($(window).width() < 1024) {
-			hideMenu();
-		}
+	// if($(window).width() < 1024) {
+	// 	hideMenu();
+	// 	filterHide();
+	// }
+	// if($(window).width() > 1024) {
+	// 	filterShow();
+	// 	filterShowOnResize();
+	// }
+	// $(window).resize(function() {
+	// 	if($(window).width() < 1024) {
+	// 		hideMenu();
+	// 	}
+	// 	if($(window).width() > 1024) {
+	// 		filterShowOnResize();
+	// 	}
 		// centerSinglePhoto();
-		showHeaderMenuWhenWide();
-		showMoreFriendDetails();
-	});
+		// showHeaderMenuWhenWide();
+		// showMoreFriendDetails();
+	// });
 });
 
 
