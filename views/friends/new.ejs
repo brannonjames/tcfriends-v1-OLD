@@ -4,7 +4,7 @@
 
 <div class="profile-head">
 	<div class="title">
-		<h2>Add a new friend.</h2>
+		<h3>Add a new friend.</h3>
 	</div>
 	<span class="required-field">*Required Field</span>
 </div>
@@ -22,7 +22,7 @@
 		</div>
 			
 		<div class="clear"></div>	
-		<div style="position: relative">
+		<div>
 			<span class="required">*</span>
 			<select name="friend[animal]" id="species" required>
 			    <option value="0" id="title-option" disabled selected>-Species-</option>
@@ -34,6 +34,7 @@
 	            <option value="horse" class="animal">Horse</option>
 	            <option value="barnyard" class="animal">Barnyard</option>
 	        </select>
+	        <i class="fa fa-angle-down" aria-hidden="true"></i>
     	</div>
         
 		<select name="friend[breeds][0]" id="breed">
@@ -56,15 +57,18 @@
 			<label for="senior">Senior</label>
 		</div>
 		
-		<select name="shelter">
-			<option disabled selected>-Shelter-</option>
-			<option disabled>-</option>
-			<option value="">None/Other</option>
-			<option disabled>-</option>
-			<% shelters.forEach(function(shelter) { %>
-					<option value="<%= shelter._id %>"><%= shelter.name %></option>	
-			<% }) %>
-		</select>
+		<div>
+			<select name="shelter">
+				<option disabled selected>-Shelter-</option>
+				<option disabled>-</option>
+				<option value="">None/Other</option>
+				<option disabled>-</option>
+				<% shelters.forEach(function(shelter) { %>
+						<option value="<%= shelter._id %>"><%= shelter.name %></option>	
+				<% }) %>
+			</select>
+			<i class="fa fa-angle-down" aria-hidden="true"></i>
+		</div>
 		
 		<input type="submit" value="Continue" class="block">
 	</form>
