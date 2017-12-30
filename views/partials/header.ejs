@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title><%= title %></title>
+	<link rel="icon" href="/favicon.ico">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="https://fonts.googleapis.com/css?family=Bitter:400,700|Roboto+Condensed:400,700" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -17,21 +18,21 @@
 
 
 		<div class="header">
-			
-			
-			
+
+
+
 			<div class="menu-buttons">
 				<i class="fa fa-bars menu-button" aria-hidden="true"></i>
 				<i class="fa fa-times menu-button" aria-hidden="true"></i>
 			</div>
-			
-			
+
+
 
 				<a href="/" id="title">
 					<h1><%= title %></h1>
 				</a>
 
-				
+
 
 			<ul class="menu">
 				<li><a href="/feed/1">Friend Feed</a></li>
@@ -49,7 +50,7 @@
 						<li><a href="/humans/<%= currentUser._id %>"><div class="human-dp-header" style="background-image: url('<%= currentUser.dp.url %>')"></div><%= currentUser.firstName %></a>
 						</li>
 						<hr>
-						<li>	
+						<li>
 							<form action="/logout" method="POST">
 								<button><i class="fa fa-sign-out menu-icon" aria-hidden="true"></i>Sign Out</button>
 							</form>
@@ -60,43 +61,43 @@
 					<li><a href="/login"><i class="fa fa-sign-in menu-icon" aria-hidden="true"></i>Login</a></li>
 				<% } %>
 				</span>
-				
+
 
 
 			</ul>
-			
-			
-			
+
+
+
 			<% if(path === "/friends/page/1" || path === "/humans") { %>
-							
+
 				<!--<i class="fa fa-search misc-button" id="search-button" aria-hidden="true"></i>-->
-			
-			
+
+
 				<!--	<form action="/friends/search" method="POST" id="search-form" class="login-form">-->
 				<!--		<input type="text" placeholder="Search Name" name="search">-->
 				<!--		<input type="submit" value="Search">-->
 				<!--	</form>-->
-				
-			<% } %>	
-			
-			<% if(path === "/:friend_url") { %>
-				
+
 			<% } %>
-			
-		
+
+			<% if(path === "/:friend_url") { %>
+
+			<% } %>
+
+
 			<div class="clear"></div>
 		</div>
-		
-		
-		
+
+
+
 	<% if(error && error.length > 0) { %>
 			<div class="flash flash-failure">
 				<%= error %>
 			</div>
-	<% } %>	
-	
+	<% } %>
+
 	<% if(success && success.length > 0) { %>
 			<div class="flash flash-success">
 				<%= success %>
 			</div>
-	<% } %>		
+	<% } %>
