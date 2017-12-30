@@ -283,14 +283,17 @@ $(document).ready(function() {
 	toggleTextInputLabel();	
 	buttonClicks();
 	showMoreFriendDetails();
+	if($(window).width() < 1024) {
+		hideMenu();
+		filterHide();
+	}
+	if($(window).width() > 1024) {
+		filterShow();
+		filterShowOnResize();
+	}
 	$(window).resize(function() {
 		if($(window).width() < 1024) {
 			hideMenu();
-			filterHide();
-		}
-		if($(window).width() > 1024) {
-			filterShow();
-			filterShowOnResize();
 		}
 		// centerSinglePhoto();
 		showHeaderMenuWhenWide();
