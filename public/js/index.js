@@ -299,9 +299,9 @@ $(document).ready(function() {
 	// 	if($(window).width() > 1024) {
 	// 		filterShowOnResize();
 	// 	}
-		// centerSinglePhoto();
-		// showHeaderMenuWhenWide();
-		// showMoreFriendDetails();
+		centerSinglePhoto();
+		showHeaderMenuWhenWide();
+		showMoreFriendDetails();
 	// });
 });
 
