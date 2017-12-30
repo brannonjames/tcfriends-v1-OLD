@@ -12,11 +12,11 @@
 
 <form action="/create/new/friend/<%= tmpFriend._id %>" method="POST" class="login-form" enctype="multipart/form-data">
     <div>
-        <span class="required">JPG or PNG</span>
+        <span class="required">*JPG or PNG</span>
         <input type="file" name="photo" id="file-upload" class="required" required>
-        <label for="file-upload"><span>Select A Photo</span></label>
+        <label for="file-upload"><span><i class="fa fa-file-image-o" aria-hidden="true"></i> Select A Photo</span></label>
     </div>
-    <button>Submit</button>
+    <input type="submit" value="Submit">
 </form>
 
 
