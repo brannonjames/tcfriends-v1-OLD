@@ -17,7 +17,7 @@ var storage = cloudStorage({
         width: 700,
         crop: "limit",
         secure: true,
-        quality: 88
+        quality: 90
     },
     filename: function (req, file, cb) {
         cb(null, file.filename);

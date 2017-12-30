@@ -17,11 +17,11 @@ var storage = cloudStorage({
     cloudinary: cloudinary,
     allowedFormats: ['jpg', 'png'],
     transformation: {
-        height: 500,
-        width: 500,
+        height: 700,
+        width: 700,
         crop: "limit",
         secure: true,
-        quality: 80
+        quality: 90
     },
     filename: function (req, file, cb) {
         cb(null, file.filename);
@@ -280,8 +280,8 @@ router.post("/create/new/friend/:tmpfriend_id", upload.single("photo"), function
                         req.user.postStatus = 0;
                         req.user.canPost = true;
                     }, 120000);
-                    newImage.smallThumb = cloudinary.url(newImage.public_id, {secure: true, crop: "limit", width: 240, height: 240, quality: 80});
-                    newImage.largeThumb = cloudinary.url(newImage.public_id, {secure: true, crop: "limit", width: 480, height: 480, quality: 80});
+                    newImage.smallThumb = cloudinary.url(newImage.public_id, {secure: true, crop: "limit", width: 280, height: 280, quality: 90});
+                    newImage.largeThumb = cloudinary.url(newImage.public_id, {secure: true, crop: "limit", width: 500, height: 500, quality: 90});
                     newImage.human.id = req.user;
                     newImage.friend = newFriend;
                     newImage.score = (Math.random() * 400) + 800;
@@ -332,8 +332,8 @@ router.post("/:friend_url/:friend_id/upload", middle.checkFriendOwner, upload.si
                     req.user.canPost = true;
                     req.user.save();
                 }, 120000);
-                newImage.smallThumb = cloudinary.url(newImage.public_id, {secure: true, crop: "limit", width: 240, height: 240, quality: 80});
-                newImage.largeThumb = cloudinary.url(newImage.public_id, {secure: true, crop: "limit", width: 480, height: 480, quality: 80});
+                newImage.smallThumb = cloudinary.url(newImage.public_id, {secure: true, crop: "limit", width: 280, height: 280, quality: 90});
+                newImage.largeThumb = cloudinary.url(newImage.public_id, {secure: true, crop: "limit", width: 500, height: 500, quality: 90});
                 newImage.human.id = req.user;
                 newImage.friend = foundFriend;
                 newImage.score = (Math.random() * 400) + 800;
