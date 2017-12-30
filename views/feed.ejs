@@ -124,18 +124,14 @@
 // 	$(filterUp).hide();
 // 	$(filterDown).hide();
 // }
-
-
 $(document).ready(function(){
-	selectFilterForm("<%= query.animal %>", "<%= query.sex %>", "<%= query.age %>");
-	$(window).resize(function() {
-		if($(window).width() < 1024) {
-			
-		}
-		if($(window).width() > 1024) {
-			
-		}
+	selectFilterForm("<%= query.animal %>", "<%= query.sex %>", "<%= query.age %>");	
 });
+
+
+
+
+
 
 </script>
 
