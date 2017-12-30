@@ -29,6 +29,11 @@ ul {
 }
 
 
+div {
+	position: relative
+}
+
+
 /* ---------------------Headers, Footers---------------------------- */
 
 /* ----------------------Menu stuff----------------------------------- */
@@ -146,7 +151,9 @@ textarea {
 	font-size: 1.4em;
 }
 
-
+.menu-buttons {
+	position: static;
+}
 
 .menu-button,
 .misc-button {
@@ -247,11 +254,14 @@ textarea {
 .feed a {
 	margin-top: 24px;
 	box-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+	background-color: #C5D1EB;
+	border-radius: 10px;
 }
 
 .feed img {
 	border-top-left-radius: 6px;
 	border-top-right-radius: 6px;
+	border-radius: 6px;
 	margin: 0 auto;
 	width: 100%;
 	width: 100%;
@@ -263,9 +273,11 @@ textarea {
 .feed img {
 	display: block;
 	position: relative;
-	padding: 0;
 }
 
+.feed p {
+	text-align: center;
+}
 
 .thumbnail {
 	float: left;
@@ -306,9 +318,11 @@ textarea {
 	position: relative;
 	width: auto;
 	color: #002633;
-	background-color: #C5D1EB;
-	border-bottom-left-radius: 6px;
-	border-bottom-right-radius: 6px;
+	padding-bottom: 3px;
+	background-color: inherit;
+	/*border-bottom-left-radius: 6px;*/
+	/*border-bottom-right-radius: 6px;*/
+
 }
 
 
@@ -318,6 +332,7 @@ textarea {
 	margin: 0 auto;
 	position: relative;
 	max-width: 400px;
+	text-align: center;
 }
 
 
@@ -359,8 +374,15 @@ textarea {
 	height: 50px;
 	margin: 16px 0;
 	padding-left: 8px;
-	min-width: 100px;
 	max-width: 460px;
+}
+
+input[type=checkbox] {
+	-webkit-appearance: checkbox;
+}
+
+input[type=file] + label {
+	border: 1px solid rgb(166,166,166);
 }
 
 input,
@@ -394,6 +416,7 @@ textarea + label {
 	
 	cursor: text;
 	color: #999;
+	text-align: left;
 	
 	position: absolute;
 	height: 0;
@@ -434,7 +457,7 @@ input[type=radio] {
 .login-form input[type=radio] + label {
 	border: 1px solid grey;
 	display: inline-block;
-	width: 49.42%;
+	width: 49%;
 	padding: 12px 0;
 	background-color: white;
 	text-align: center;
@@ -459,6 +482,15 @@ input[type=radio] {
 
 
 
+
+select + i {
+	position: absolute;
+	color: rgb(166, 166, 166);
+	top: 30px;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 10px;
+}
 
 
 .profile-head {
@@ -1140,7 +1172,7 @@ footer a {
 }
 
 #filter-menu input[type=radio] + label {
-	width: 48.8%;
+	width: 48%;
 }
 
 #filter-menu .profile-head {
@@ -1182,6 +1214,7 @@ footer a {
 .check-option {
 	display: inline-block;
 	margin: 16px 0;
+	font-size: 1.2em;
 }
 
 .check-option input {
@@ -1200,7 +1233,17 @@ footer a {
 	padding: 0;
 }
 
+#use-email {
+	font-size: .8em;
+	float: left;
+	margin-top: 0;
+}
+
 @media only screen and (min-width: 480px) {
+	.feed a {
+		padding: 5px;
+	}
+
 	.friend-photos .thumbnail {
 		width: 96%;
 		padding-top: 96%;

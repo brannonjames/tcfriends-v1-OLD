@@ -14,17 +14,20 @@
 		</div>
 	</div>
 	<form action="/feed/1" method="GET" class="login-form">
-			
-		<select name="animal" id="species" required>
-		    <option value="0" id="title-option" disabled selected>-Species-</option>
-            <option value="dog" class="animal">Doggo</option>
-            <option value="cat" class="animal">Kitty</option>
-            <option value="bird" class="animal">Bird</option>
-            <option value="reptile" class="animal">Reptile</option>
-            <option value="smallfurry" class="animal">Small & Furry</option>
-            <option value="horse" class="animal">Horse</option>
-            <option value="barnyard" class="animal">Barnyard</option>
-        </select>
+		<div>	
+			<select name="animal" id="species" required>
+			    <option value="0" id="title-option" disabled selected>-Species-</i></option>
+			    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+	            <option value="dog" class="animal">Doggo</option>
+	            <option value="cat" class="animal">Kitty</option>
+	            <option value="bird" class="animal">Bird</option>
+	            <option value="reptile" class="animal">Reptile</option>
+	            <option value="smallfurry" class="animal">Small & Furry</option>
+	            <option value="horse" class="animal">Horse</option>
+	            <option value="barnyard" class="animal">Barnyard</option>
+	        </select>
+	        <i class="fa fa-angle-down" aria-hidden="true"></i>
+    	</div>
         
 
 		<input type="radio" name="sex" value="M" id="male" class="filter-sex">
@@ -68,7 +71,7 @@
     		<% } %>
 		<% }) %>
 		<% if(images.length < 1) {%>
-			<p>Couldn't find any photos :(<p>
+			<p class="flash flash-failure">Couldn't find any photos :(</p>
 		<% } %>		
 	</ul>
 			
