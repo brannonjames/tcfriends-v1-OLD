@@ -13,8 +13,8 @@ var storage = cloudStorage({
     cloudinary: cloudinary,
     allowedFormats: ['jpg', 'png'],
     transformation: {
-        height: 700,
-        width: 700,
+        height: 160,
+        width: 160,
         crop: "limit",
         secure: true,
         quality: 90

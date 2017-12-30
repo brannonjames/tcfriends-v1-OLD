@@ -13,11 +13,15 @@ var menu 				= $(".menu"),
 	jumpToTop			= $("#jump-to-top"),
 	menuButtonDiv		= $(".menu-buttons"),
 	shelterEmail		= $("#shelter-email"),
+	filterToggleDiv		= $("#filter-toggle"),
+	filterForm  		= $(".filter-form"),
+	filterReset			= $("#filter-reset"),
+	filterDown			= $("#filter-down"),
+	filterUp			= $("#filter-up"),
 	useEmail			= $("#use-email"),
 	width				= $(window).width(),
 
 	largeBreakPoint		= 1024;
-
 
 
 
@@ -33,8 +37,6 @@ function menuToggle() {
 
 	
 function buttonClicks() {
-
-	
 	$(menuButtonDiv).click(function() {
 		menuToggle();
 	});
@@ -58,17 +60,35 @@ function buttonClicks() {
 		$("html").animate({ scrollTop: 0 }, 'fast');
 	});
 
-	// $(useEmail).click(function() {
-	// 	if(document.getElementById("use-email-input").checked === true) {
-	// 		document.getElementById("shelter-email").disabled = true;
-	// 	} else {
-	// 		document.getElementById("shelter-email").disabled = false;
-	// 	}
-	// })
-	
 }
 
-	
+
+function filterToggle(){
+	$(filterForm).toggle();
+	$(filterUp).toggle();
+	$(filterDown).toggle();
+}
+
+function filterShow(){
+	$(filterForm).show();
+	$(filterUp).show();
+	$(filterDown).hide();
+	$(filterToggleDiv).show();
+}
+
+function filterHide(){
+	$(filterForm).hide();
+	$(filterToggleDiv).show()
+	$(filterUp).hide();
+	$(filterDown).show();
+}
+
+function filterShowOnResize(){
+	$(filterToggleDiv).hide();
+	$(filterUp).hide();
+	$(filterDown).hide();
+}
+		
 
 function selectFilterForm(animal, sex, age) {
 	var filterAnimalForm = document.getElementById("species"),
@@ -111,44 +131,6 @@ function fileUploader() {
 		}
 	});		
 }
-
-// function newAnimalFormChangeBreeds(animalType, animalBreeds) {
-	// var animals = document.getElementsByClassName("animal");
-	// animals = $(animals).toArray();
-	// var breedLists = [];
-
-
-	// <% breeds.forEach(function(animal) { %>
-	// 	breedLists.unshift({name: "<%= animal.animal %>", breeds: "<%= animal.breeds %>".split(",")});
-	// <% }) %>	
-
-			
-	// $("#species").change(function() {
-	// 	var breeds = document.getElementById('breed');
-	// 	var species = document.getElementById('species');
-	// 	if(species.value ==="dog" || species.value ==="cat" || species.value ==="bird" || species.value ==="horse"){
-	// 		breeds.innerHTML = "<option value='' disabled selected>-Breed-</option><option value='' disabled>-</option><option value=''>Unknown</option><option value='' disabled>-</option>";
-	// 	} else {
-	// 		breeds.innerHTML = "<option value='' disabled selected>-Breed-</option>";
-	// 	}
-	// 	animals.forEach(function(animal) {
-	// 		if(animal.selected) {
-	// 			for(var i=0; i<breedLists.length; i++) {
-	// 				if(breedLists[i].name == animal.value) {
-	// 					for(j=0; j<breedLists[i].breeds.length; j++) {
-	// 						var option = document.createElement('option');
-	// 						option.text = breedLists[i].breeds[j];
-	// 						option.value = breedLists[i].breeds[j];
-	// 						breeds.options[breeds.options.length] = option;
-	// 					}
-	// 				}
-	// 			}
-	// 		}
-	// 	})
-
-	// });
-// }	
-	
 	
 var slideIndex;
 function loadSlideshow(j) {
@@ -162,6 +144,8 @@ function loadSlideshow(j) {
 	
 
 }
+
+
 
 
 function exitSlideshow() {
@@ -249,7 +233,6 @@ function toggleTextInputLabel() {
 	
 	
 
-
 function showHeaderMenuWhenWide() {
 	if($(window).width() >= 1024) {
 		$(menu).css("display", "block");
@@ -303,6 +286,11 @@ $(document).ready(function() {
 	$(window).resize(function() {
 		if($(window).width() < 1024) {
 			hideMenu();
+			filterHide();
+		}
+		if($(window).width() > 1024) {
+			filterShow();
+			filterShowOnResize();
 		}
 		// centerSinglePhoto();
 		showHeaderMenuWhenWide();

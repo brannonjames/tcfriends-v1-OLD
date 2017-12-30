@@ -26,20 +26,9 @@
 
 
 <script>
-    function fileUploader() {
-    	var fileInput = document.getElementById("file-upload");
-    	fileInput.addEventListener('change', function(e) {
-    		var inputLabel	= fileInput.nextElementSibling,
-    			labelVal	= inputLabel.innerHTML,
-    			fileName	= e.target.value.split("C:\\fakepath\\").pop();
-    		if(fileName) {
-    			inputLabel.querySelector("span").innerHTML = fileName;
-    		} else {
-    			inputLabel.innerHTML = labelVal;
-    		}
-    	});		
-    }
-    fileUploader();
+    $(document).ready(function(){
+        fileUploader();
+    })
 </script>
 
 <% include ../partials/footer %>

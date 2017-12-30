@@ -5,15 +5,16 @@
 <% } %>
 
 
-<div id="jump-to-top"><i class="fa fa-level-up" aria-hidden="true"></i></div>
+<div id="jump-to-top"><i class="fa fa-level-up" aria-hidden="true"></i> Jump to Top</div>
 
 <div id="filter-menu">
 	<div class="profile-head">
+		<div id="filter-toggle" onclick="filterToggle()"></div>
 		<div class="title">
-			<h4>Filter</h4>
+			<h4>Filter <i class="fa fa-angle-down filter-angle" aria-hidden="true" id="filter-down"></i><i class="fa fa-angle-up filter-angle" aria-hidden="true" id="filter-up"></i></h4>
 		</div>
 	</div>
-	<form action="/feed/1" method="GET" class="login-form">
+	<form action="/feed/1" method="GET" class="login-form filter-form" id="filter-form" <%if(Object.keys(query).length > 0){%> style="display:block" <%}%>>
 		<div>	
 			<select name="animal" id="species" required>
 			    <option value="0" id="title-option" disabled selected>-Species-</i></option>
@@ -48,7 +49,7 @@
 			
 		<input type="submit" value="Filter" class="block">
 	</form>
-	<div class="login-form">
+	<div class="login-form filter-form" <%if(Object.keys(query).length > 0){%> style="display:block" <%}%>>
 		<a href="/feed/1"><button>Reset</button></a>
 	</div>
 </div>
@@ -96,36 +97,10 @@
 
 
 <script>
-function selectFilterForm(animal, sex, age) {
-	var filterAnimalForm = document.getElementById("species"),
-		filterAnimalQuery = animal,
 
-		filterSexForm = document.getElementsByClassName("filter-sex"),
-		filterSexQuery = sex,
-
-		filterAgeForm = document.getElementsByClassName("filter-age"),
-		filterAgeQuery = age;
-
-	for(var i=0, len=filterAnimalForm.options.length; i<len; i++) {
-		if(filterAnimalForm.options[i].value === filterAnimalQuery) {
-			filterAnimalForm.options[i].selected = true;
-		}
-	}
-	for(var i=0, len=filterSexForm.length; i<len; i++) {
-		if(filterSexForm[i].value === filterSexQuery) {
-			filterSexForm[i].checked = true;
-		}
-	}
-	for(var i=0, len=filterAgeForm.length; i<len; i++) {
-		if(filterAgeForm[i].value === filterAgeQuery) {
-			filterAgeForm[i].checked = true;
-		}
-	}
-
-}
-selectFilterForm("<%= query.animal %>", "<%= query.sex %>", "<%= query.age %>");
-
-
+$(document).ready(function(){
+	selectFilterForm("<%= query.animal %>", "<%= query.sex %>", "<%= query.age %>");
+});
 
 </script>
 
