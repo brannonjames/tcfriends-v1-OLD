@@ -3,6 +3,7 @@ var express     = require("express"),
     nodemailer  = require("nodemailer"),
     Human       = require("../models/human"),
     middle      = require("../middleware"),
+    crypto      = require("crypto"),
     hbs         = require("nodemailer-express-handlebars");
     
  
@@ -99,6 +100,90 @@ router.post("/mail/:recipient_id/:subject", middle.isLoggedIn, function(req, res
             res.redirect("/");
         } 
     });       
+});
+
+
+
+
+router.get("/forgotpassword", function(req, res){
+    res.render("forgotpassword");
+})
+
+
+router.post("/forgotpassword", function(req, res){
+    Human.findOne({username: req.body.email}, function(err, user){
+        if(err){
+            return console.log(err);
+        }
+        if(!user){
+            console.log("No user with that email");
+            return res.redirect("back");
+        }
+        crypto.randomBytes(20, function(err, buffer){
+            var token = buffer.toString("hex");
+            user.passwordResetToken = token;
+            user.passwordResetExpires = Date.now() + 3600000;
+            user.save(function(){
+                mailOptions = {
+                    from: "msppets@gmail.com",
+                    to: req.body.email,
+                    subject: "Password Reset | Twin City Friends",
+                    template: "password_reset",
+                    context: {
+                        resetUrl: req.headers.origin + "/resetpassword/" + token,
+                    }
+                };
+                transporter.sendMail(mailOptions, function(err, info) {
+                    if(err){
+                        return middle.error(req, res, err);
+                    }
+                    req.flash("success", "Instructions sent to " + user.username);
+                    res.redirect("/feed/1");
+                    console.log("Email sent: " + info.response);
+                });
+            });
+        });      
+    });
+});
+
+
+router.get('/resetpassword/:token', function(req, res){
+    Human.findOne({passwordResetToken: req.params.token, passwordResetExpires: { $gt: Date.now() }}, function(err, user){
+        if(err){
+            return console.log(err);
+        }
+        if(!user){
+            return console.log("no user");
+        }
+        res.render("resetpassword", { token: user.passwordResetToken });
+    });
+});
+
+
+
+
+router.post("/resetpassword/:token", function(req, res){
+    Human.findOne({passwordResetToken: req.params.token, passwordResetExpires: { $gt: Date.now() }}, function(err, user){
+        if(err){
+            return console.log(err);
+        }
+        if(!user){
+            
+        }
+        if(!req.body.password || req.body.password !== req.body.passwordConfirm){
+            req.flash("error", "Passwords do not match");
+            return res.redirect("back");
+        }
+        user.setPassword(req.body.password, function(){
+            user.save(function(err){
+                if(err){
+                    return console.log(err);
+                }
+                req.flash("success", "Password successfully reset!");
+                res.redirect("/login");
+            });    
+        });
+    });
 });
     
     
