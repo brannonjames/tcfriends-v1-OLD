@@ -10,6 +10,9 @@ var HumanSchema = new mongoose.Schema({
     lastName: String,
     zip: Number,
     city: String,
+    passwordResetToken: String,
+    passwordResetExpires: String,
+    data: {},
     photos: [ {
         id: {
             type: mongoose.Schema.Types.ObjectId,

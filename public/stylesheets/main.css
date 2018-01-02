@@ -831,6 +831,20 @@ select + i {
 	text-decoration: underline;
 }
 
+
+#forgot-password {
+	padding: 6px;
+	color: #002633;
+   	margin: 0;
+    text-align: right;
+    font-size: .7em;
+    text-decoration: underline;
+    display: inline-block;
+    float: right;
+}
+
+
+
 .profile-thumbnail {
 	width: 47%;
 	height: 0;
