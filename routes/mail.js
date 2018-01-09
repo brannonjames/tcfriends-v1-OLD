@@ -67,8 +67,8 @@ router.post("/forgotpassword", function(req, res){
             return console.log(err);
         }
         if(!user){
-            console.log("No user with that email");
-            return res.redirect("back");
+            req.flash("success", "Reset instructions sent to " + req.body.email);
+            return res.redirect("/feed/1");
         }
         crypto.randomBytes(20, function(err, buffer){
             var token = buffer.toString("hex");
