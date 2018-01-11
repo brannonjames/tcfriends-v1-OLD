@@ -33,19 +33,52 @@ router.post("/mail/:recipient_id/:subject", middle.isLoggedIn, function(req, res
     var mailOptions = new Object();
     Human.findById(req.params.recipient_id, function(err, foundRecipient) {
         if(err) {
-            return middle.error(req, res, err);
-            req.flash("error", "An error has occured");
-            res.redirect("back");
+            middle.error(req, res, err);
         }
         if(req.params.subject === "message") {
-            //mailgun stuff goes here   
+            ejs.renderFile("templates/emails/user_email.ejs", {recipient: foundRecipient, message: req.body.mail.html}, function(err, template){
+                if(err){
+                    console.log(err);
+                }
+                console.log(template);
+                var data = {
+                    from: 'email@twincityfriends.com',
+                    to: foundRecipient.username,
+                    subject: "New Message | TC Friends",
+                    html: template
+                };
+     
+                mailgun.messages().send(data, function (err, body) {
+                  console.log(body);
+                  req.flash("success", "Reset instructions sent to " + req.body.email);
+                  res.redirect("/feed/1");
+                });
+            });  
         }   
         else if(req.params.subject === "report") {
             if(!req.body.mail.html) {
                 req.flash("error", "You must give a reason for reporting");
                 res.redirect("back");
             } else {
-                  //mailgun stuff goes here  
+                ejs.renderFile("templates/emails/report_email.ejs", {resetUrl: req.headers.origin + "/resetpassword/" + token}, function(err, template){
+                    if(err){
+                        console.log(err);
+                    }
+                    console.log(template);
+                    var data = {
+                        from: 'jimmy@twincityfriends.com',
+                        to: "support@twincityfriends.com",
+                        subject: 'Test',
+                        text: "text",
+                        html: template
+                    };
+         
+                    mailgun.messages().send(data, function (err, body) {
+                      console.log(body);
+                      req.flash("success", "Reset instructions sent to " + req.body.email);
+                      res.redirect("/feed/1");
+                    });
+                }); 
             }   
         } else {
             res.redirect("/");
