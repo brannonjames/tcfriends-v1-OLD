@@ -42,7 +42,7 @@ router.post("/mail/:recipient_id/:subject", middle.isLoggedIn, function(req, res
                 }
                 console.log(template);
                 var data = {
-                    from: 'email@twincityfriends.com',
+                    from: "email@twincityfriends.com",
                     to: foundRecipient.username,
                     subject: "New Message | TC Friends",
                     html: template
@@ -50,7 +50,7 @@ router.post("/mail/:recipient_id/:subject", middle.isLoggedIn, function(req, res
      
                 mailgun.messages().send(data, function (err, body) {
                   console.log(body);
-                  req.flash("success", "Reset instructions sent to " + req.body.email);
+                  req.flash("success", "Your message was sent");
                   res.redirect("/feed/1");
                 });
             });  
@@ -60,22 +60,22 @@ router.post("/mail/:recipient_id/:subject", middle.isLoggedIn, function(req, res
                 req.flash("error", "You must give a reason for reporting");
                 res.redirect("back");
             } else {
-                ejs.renderFile("templates/emails/report_email.ejs", {resetUrl: req.headers.origin + "/resetpassword/" + token}, function(err, template){
+                ejs.renderFile("templates/emails/report_email.ejs", {sender: req.user, reported: foundRecipient, message: req.body.mail.html}, function(err, template){
                     if(err){
                         console.log(err);
                     }
                     console.log(template);
                     var data = {
-                        from: 'jimmy@twincityfriends.com',
+                        from: 'support@twincityfriends.com',
                         to: "support@twincityfriends.com",
-                        subject: 'Test',
+                        subject: 'Reported User',
                         text: "text",
                         html: template
                     };
          
                     mailgun.messages().send(data, function (err, body) {
                       console.log(body);
-                      req.flash("success", "Reset instructions sent to " + req.body.email);
+                      req.flash("success", "User Reported");
                       res.redirect("/feed/1");
                     });
                 }); 
